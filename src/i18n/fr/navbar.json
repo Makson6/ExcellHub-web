@@ -1,0 +1,12 @@
+{
+  "allCourses": "Tous les cours",
+  "dashboard": "Mon espace",
+  "student": "Élève",
+  "teacher": "Professeur",
+  "admin": "Admin",
+  "logout": "Se déconnecter",
+  "login": " Connexion",
+
+  "profile": "Profile",
+  "about": "A Propos"
+}

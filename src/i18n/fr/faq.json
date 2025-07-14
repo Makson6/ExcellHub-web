@@ -1,0 +1,26 @@
+{
+  "faqTitle": "Questions Fréquemment Posées",
+  "faqIntro": "Retrouvez ici toutes les réponses à vos questions avant de vous lancer.",
+  "questions": [
+    {
+      "question": "Comment puis-je m'inscrire à un cours ?",
+      "answer": "Rendez‑vous sur la page d'inscription, créez un compte et sélectionnez le cours de votre choix."
+    },
+    {
+      "question": "Les cours sont‑ils certifiants ?",
+      "answer": "Oui, à la fin de chaque cours, vous pouvez télécharger un certificat reconnu."
+    },
+    {
+      "question": "Combien de temps ai‑je accès aux cours ?",
+      "answer": "Une fois inscrit, vous avez accès au contenu du cours à vie."
+    },
+    {
+      "question": "Les cours sont‑ils disponibles sur mobile ?",
+      "answer": "Tout à fait ! Nos cours sont accessibles sur tous vos appareils : mobile, tablette et ordinateur."
+    }
+  ],
+  "newsletterTitle": "Rejoignez notre newsletter",
+  "newsletterText": "Restez informé des nouvelles formations, des offres exclusives et des ressources utiles pour booster vos compétences.",
+  "newsletterPlaceholder": "Votre adresse email",
+  "newsletterButton": "Je m'inscris"
+}

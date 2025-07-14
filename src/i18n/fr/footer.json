@@ -1,0 +1,32 @@
+{
+  "readyTitle": "Prêt à booster vos compétences ?",
+  "readySubtitle": "Rejoignez notre communauté d’apprenants et démarrez vos cours certifiants !",
+  "createAccount": "Créez votre compte",
+  "socialTitle": "Réseaux sociaux",
+  "social": {
+    "tiktok": "Tiktok",
+    "facebook": "Facebook",
+    "whatsapp": "Whatsapp",
+    "instagram": "Instagram"
+  },
+  "productTitle": "Produit",
+  "product": {
+    "videoLesson": "Cours vidéo",
+    "languageExchange": "Échange linguistique",
+    "speakingPractice": "Pratique orale",
+    "quizzes": "Quiz"
+  },
+  "supportTitle": "Support",
+  "support": {
+    "helpCenter": "Centre d’aide",
+    "tutorials": "Tutoriels",
+    "contactUs": "Nous contacter",
+    "faqs": "FAQs",
+    "feedback": "Retour d'expérience"
+  },
+  "contactTitle": "Contact",
+  "privacy": "Confidentialité",
+  "terms": "Conditions",
+  "conditions": "Conditions générales",
+  "rights": "Tous droits réservés 2025"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "📘 General Terms of Sale",
+  "intro": "These general terms apply to any online course order on the Excell-is-Hub App platform. By purchasing a course, you automatically accept these terms.",
+  "payment": {
+    "title": "💳 Payment Terms",
+    "content": "Payment is made online through secure methods. Once payment is confirmed, the user gains immediate access to the selected course."
+  },
+  "delivery": {
+    "title": "📦 Content Delivery",
+    "content": "All content (videos, documents, quizzes, etc.) is delivered digitally and accessible through your personal space."
+  },
+  "withdrawal": {
+    "title": "⏱️ Right of Withdrawal",
+    "content": "According to applicable laws, the right of withdrawal does not apply to digital content consumed immediately after purchase."
+  },
+  "support": {
+    "title": "📩 Support",
+    "content": "If you have trouble accessing a course, please contact us via the contact page. We will respond within 48 business hours."
+  },
+  "footer": {
+    "text": "For any questions regarding your purchases or rights, please consult our privacy page or contact us through the contact page."
+  }
+}

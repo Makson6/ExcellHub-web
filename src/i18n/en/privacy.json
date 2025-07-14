@@ -1,0 +1,44 @@
+{
+  "title": "Privacy and Security",
+  "intro": "At ExcellHub, the privacy and security of your data is a top priority. We are committed to protecting the personal information you share with us and to ensuring its responsible use.",
+  "dataCollected": {
+    "title": "📥 What data do we collect?",
+    "items": [
+      "Your name, surname and email address",
+      "Your phone number and city",
+      "The courses you follow or publish",
+      "Messages sent and received on the platform"
+    ]
+  },
+  "dataUsage": {
+    "title": "🔧 How do we use your data?",
+    "description": "The information collected is used to:",
+    "items": [
+      "Improve your learning experience",
+      "Customize the courses we show you",
+      "Send you relevant notifications or emails",
+      "Ensure the security of your account"
+    ]
+  },
+  "dataSharing": {
+    "title": "🤝 Sharing your information",
+    "description": "We do not share your personal data with any third party without your consent, except in the case of legal obligations or for the proper functioning of the platform."
+  },
+  "security": {
+    "title": "🛡️ Data security",
+    "description": "All your information is securely stored. We use encryption technologies, authentication, and best security practices to protect your data from unauthorized access."
+  },
+  "yourRights": {
+    "title": "🧾 Your rights",
+    "description": "You may at any time:",
+    "items": [
+      "Access your data",
+      "Request modification or deletion of your data",
+      "Manage your communication preferences"
+    ]
+  },
+  "contact": {
+    "text": "If you have any questions about our privacy or security policy, feel free to contact us via the",
+    "link": "contact page"
+  }
+}

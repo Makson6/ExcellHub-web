@@ -1,0 +1,23 @@
+{
+  "title": "📜 Masharti ya Matumizi",
+  "intro": "Karibu kwenye Excell-is-Hub App, jukwaa lako la kujifunza mtandaoni. Kwa kujisajili au kutumia huduma zetu, unakubali masharti haya ya matumizi. Tafadhali yasome kwa makini.",
+  "access": {
+    "title": "🎓 Upatikanaji wa Kozi",
+    "content": "Upatikanaji wa kozi unahitaji kuunda akaunti ya mtumiaji. Baadhi ya maudhui ni ya bure, mengine hulipiwa. Kukiuka masharti haya kunaweza kusababisha kusimamishwa kwa akaunti."
+  },
+  "intellectual": {
+    "title": "📘 Haki Miliki",
+    "content": "Kozi zote, video, PDF na vifaa vingine vya elimu ni mali ya waandishi wake au ya jukwaa. Nakala yoyote, usambazaji au uuzaji unakatazwa bila ruhusa ya maandishi."
+  },
+  "behavior": {
+    "title": "👤 Tabia ya Mtumiaji",
+    "content": "Mtumiaji anatakiwa kuonyesha tabia ya heshima kwenye mijadala, maoni, na vipindi vya moja kwa moja. Unyanyasaji wowote unaweza kusababisha kufukuzwa kwenye jukwaa."
+  },
+  "modifications": {
+    "title": "🔄 Mabadiliko",
+    "content": "Masharti yanaweza kubadilishwa wakati wowote. Watumiaji watajulishwa kwa barua pepe au kupitia arifa kwenye jukwaa."
+  },
+  "footer": {
+    "text": "Kwa maswali yoyote kuhusu masharti haya, tafadhali wasiliana nasi kupitia ukurasa wa mawasiliano."
+  }
+}

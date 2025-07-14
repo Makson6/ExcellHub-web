@@ -1,0 +1,32 @@
+{
+  "readyTitle": "Ready to boost your skills?",
+  "readySubtitle": "Join our learning community and start your certified courses!",
+  "createAccount": "Create your account",
+  "socialTitle": "Social Media",
+  "social": {
+    "tiktok": "Tiktok",
+    "facebook": "Facebook",
+    "whatsapp": "Whatsapp",
+    "instagram": "Instagram"
+  },
+  "productTitle": "Product",
+  "product": {
+    "videoLesson": "Video Lessons",
+    "languageExchange": "Language Exchange",
+    "speakingPractice": "Speaking Practice",
+    "quizzes": "Quizzes"
+  },
+  "supportTitle": "Support",
+  "support": {
+    "helpCenter": "Help Center",
+    "tutorials": "Tutorials",
+    "contactUs": "Contact Us",
+    "faqs": "FAQs",
+    "feedback": "Feedback"
+  },
+  "contactTitle": "Contact",
+  "privacy": "Privacy",
+  "terms": "Terms",
+  "conditions": "Terms & Conditions",
+  "rights": "All rights reserved 2025"
+}

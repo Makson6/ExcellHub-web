@@ -1,0 +1,32 @@
+{
+  "readyTitle": "Ozali na motema ya kokola mayele na yo?",
+  "readySubtitle": "Kangama na lisanga ya bayekoli mpe bandimama misala na yo ya boyekoli ya solo!",
+  "createAccount": "Sala compte na yo",
+  "socialTitle": "Mikanda ya bomoto",
+  "social": {
+    "tiktok": "Tiktok",
+    "facebook": "Facebook",
+    "whatsapp": "Whatsapp",
+    "instagram": "Instagram"
+  },
+  "productTitle": "Biloko",
+  "product": {
+    "videoLesson": "Mateya ya video",
+    "languageExchange": "Bobongwana ya minɔkɔ",
+    "speakingPractice": "Mayekoli ya koloba",
+    "quizzes": "Mituna ya mayele"
+  },
+  "supportTitle": "Soutien",
+  "support": {
+    "helpCenter": "Centre ya lisungi",
+    "tutorials": "Bamiselela",
+    "contactUs": "Loba na biso",
+    "faqs": "Mituna mingi",
+    "feedback": "Maloba ya botali"
+  },
+  "contactTitle": "Kontakte",
+  "privacy": "Mibeko ya bomoto",
+  "terms": "Mibeko",
+  "conditions": "Mikakatano",
+  "rights": "Makoki nyonso babombi 2025"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "📜 Terms of Use",
+  "intro": "Welcome to Excell-is-Hub App, your online learning platform. By registering or using our services, you agree to these terms of use. Please read them carefully.",
+  "access": {
+    "title": "🎓 Course Access",
+    "content": "Access to courses requires creating a user account. Some content may be free, others paid. Violation of these rules may result in account suspension."
+  },
+  "intellectual": {
+    "title": "📘 Intellectual Property",
+    "content": "All courses, videos, PDFs, and other educational materials are the property of their authors or the platform. Any reproduction, distribution, or resale is strictly prohibited without written permission."
+  },
+  "behavior": {
+    "title": "👤 User Conduct",
+    "content": "Users must behave respectfully in forums, comments, and live sessions. Any abuse may result in exclusion from the platform."
+  },
+  "modifications": {
+    "title": "🔄 Changes",
+    "content": "The terms may be updated at any time. Users will be informed via email or in-platform notifications."
+  },
+  "footer": {
+    "text": "If you have any questions about these terms, please contact us via the contact page."
+  }
+}

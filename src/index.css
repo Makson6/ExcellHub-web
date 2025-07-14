@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+--font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+--font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace;
+
+/* --breakpoint-xs: 30rem;
+--breakpoint-2xl: 100rem;
+--breakpoint-3xl: 120rem; */
+
+@theme {
+  --color-primary: #2563eb; /* Indigo-600 */
+  --color-secondary: #06b6d4; /* Cyan-500 */
+  --color-accent: #10b981; /* Emerald-500 */
+  --color-background: #f9fafb; /* Gray-50 */
+  --color-dark-bg: #0f172a; /* Slate-900 */
+  --color-midnight: #1e293b; /* Slate-800 */
+  --color-text: #1e293b; /* Slate-800 */
+  --color-light: #94a3b8; /* Slate-400 */
+  --color-white: #ffffff;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, "Apple Color Emoji", Arial,
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* button {
+  @apply font-serf: Times;
+} */
+/* .typography {
+  p {
+    font-size: var(--text-base);
+  }
+  div {
+    --font-serif: Times, serif;
+  }
+  img {
+    border-radius: var(--radius-lg);
+  }
+} */
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */

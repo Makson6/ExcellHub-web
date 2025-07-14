@@ -1,0 +1,23 @@
+{
+  "title": "📜 Maloba ya Misala",
+  "intro": "Boyei na Excell-is-Hub App, plateforme na bino ya koyekola na internet. Soki ozwaki compte to osalaki misala na biso, ozali kondima makambo oyo elandi. Tala yango malamu.",
+  "access": {
+    "title": "🎓 Kokota na ba cours",
+    "content": "Mpo na kozwa cours, esengeli kosala compte ya moto. Ba contenu mosusu ezali na libela, mosusu ezali ya kofutela. Soki olandi te, compte ekoki kosila."
+  },
+  "intellectual": {
+    "title": "📘 Bokonzi ya makanisi",
+    "content": "Ba cours nyonso, ba vidéos, ba PDF mpe biloko nyonso ya koyekola ezali ya platforme to ya ba auteurs. Kokopier, koteka to kosakola yango ezali na ndingisa te."
+  },
+  "behavior": {
+    "title": "👤 Bizaleli ya mosaleli",
+    "content": "Mosaleli asengeli kozala na esengo mpe bosolo na forum, commentaire, mpe ba live. Kosala mabe ekoki kobimisa yo na plateforme."
+  },
+  "modifications": {
+    "title": "🔄 Mbongwana",
+    "content": "Makambo oyo ekoki kobongwana na ntango nyonso. Tokoyebisa bino na email to na alerte na plateforme."
+  },
+  "footer": {
+    "text": "Soki ozali na motuna mpo na makambo oyo, tika message na peji ya contact."
+  }
+}

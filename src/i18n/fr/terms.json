@@ -1,0 +1,23 @@
+{
+  "title": "📜 Conditions d’utilisation",
+  "intro": "Bienvenue sur Excell-is-Hub App, votre plateforme de formation en ligne. En vous inscrivant ou en utilisant nos services, vous acceptez les présentes conditions générales d'utilisation. Merci de les lire attentivement.",
+  "access": {
+    "title": "🎓 Accès aux cours",
+    "content": "L'accès aux cours nécessite la création d’un compte utilisateur. Certains contenus peuvent être gratuits, d’autres payants. Le non-respect de ces règles peut entraîner la suspension du compte."
+  },
+  "intellectual": {
+    "title": "📘 Propriété intellectuelle",
+    "content": "Tous les cours, vidéos, PDF, et autres ressources pédagogiques sont la propriété de leurs auteurs ou de la plateforme. Toute reproduction, diffusion ou revente est strictement interdite sans autorisation écrite."
+  },
+  "behavior": {
+    "title": "👤 Comportement de l’utilisateur",
+    "content": "L’utilisateur s’engage à respecter un comportement respectueux dans les forums, les commentaires et les sessions en direct. Tout abus peut entraîner l’exclusion de la plateforme."
+  },
+  "modifications": {
+    "title": "🔄 Modifications",
+    "content": "Les conditions peuvent être mises à jour à tout moment. Les utilisateurs seront informés par e-mail ou notification sur la plateforme."
+  },
+  "footer": {
+    "text": "Pour toute question concernant ces conditions, merci de nous contacter via la page contact."
+  }
+}

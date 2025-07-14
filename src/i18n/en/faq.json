@@ -1,0 +1,26 @@
+{
+  "faqTitle": "Frequently Asked Questions",
+  "faqIntro": "Find all the answers to your questions before getting started.",
+  "questions": [
+    {
+      "question": "How can I enroll in a course?",
+      "answer": "Go to the registration page, create an account, and select the course of your choice."
+    },
+    {
+      "question": "Are the courses certified?",
+      "answer": "Yes, at the end of each course, you can download a recognized certificate."
+    },
+    {
+      "question": "How long do I have access to the courses?",
+      "answer": "Once registered, you have lifetime access to the course content."
+    },
+    {
+      "question": "Are the courses available on mobile?",
+      "answer": "Absolutely! Our courses are accessible on all your devices: mobile, tablet, and computer."
+    }
+  ],
+  "newsletterTitle": "Join our newsletter",
+  "newsletterText": "Stay informed about new trainings, exclusive offers, and helpful resources to boost your skills.",
+  "newsletterPlaceholder": "Your email address",
+  "newsletterButton": "Subscribe"
+}

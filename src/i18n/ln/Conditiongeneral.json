@@ -1,0 +1,23 @@
+{
+  "title": "📘 Maloba ya Bokonzi ya Tɛki",
+  "intro": "Maloba oyo esalelaka mpo na ba commandes nyonso ya ba cours na internet na plateforme Excell-is-Hub App. Soki ozui cours, ozali koyokana na maloba oyo.",
+  "payment": {
+    "title": "💳 Ndenge ya kofuta",
+    "content": "Kofuta esalemi na internet na nzela ya sécurité. Simɛtɛ kofuta ekómi, moteyi azwi nzela ya mbala moko ya cours."
+  },
+  "delivery": {
+    "title": "📦 Kopesa ba contenus",
+    "content": "Ba contenus nyonso (ba vidéos, ba documents, ba quiz, n.k.) ezalaka na forme numérique mpe eyaka na esika na yo ya moto na plateforme."
+  },
+  "withdrawal": {
+    "title": "⏱️ Droits ya kolongola motema",
+    "content": "Kolanda mibeko ya mboka, droit ya kolongola motema ezali te na contenus numériques oyo esalemaka mbala moko sima ya kofuta."
+  },
+  "support": {
+    "title": "📩 Lisungi",
+    "content": "Soki ozali na pasi ya kokota na cours, yebisa biso na peji ya contact. Tokopesa eyano na ngonga 48 ya mosala."
+  },
+  "footer": {
+    "text": "Soki ozali na mituna mpo na ba achats na yo to makoki na yo, tala peji na biso ya confidentialité to tinda biso message na contact."
+  }
+}

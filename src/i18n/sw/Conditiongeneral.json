@@ -1,0 +1,23 @@
+{
+  "title": "📘 Masharti ya Jumla ya Mauzo",
+  "intro": "Masharti haya yanatumika kwa kila agizo la kozi mtandaoni kupitia jukwaa la Excell-is-Hub App. Kwa kununua kozi, unakubali masharti haya moja kwa moja.",
+  "payment": {
+    "title": "💳 Masharti ya Malipo",
+    "content": "Malipo hufanyika mtandaoni kwa njia salama. Mara tu malipo yanapothibitishwa, mtumiaji hupata ufikiaji wa haraka kwa kozi husika."
+  },
+  "delivery": {
+    "title": "📦 Uwasilishaji wa Maudhui",
+    "content": "Maudhui yote (video, nyaraka, majaribio, n.k.) hutolewa kwa njia ya kidigitali na hupatikana kupitia sehemu yako ya mtumiaji."
+  },
+  "withdrawal": {
+    "title": "⏱️ Haki ya Kujiondoa",
+    "content": "Kulingana na sheria husika, haki ya kujiondoa haitumiki kwa maudhui ya kidigitali yanayotumika mara moja baada ya kununuliwa."
+  },
+  "support": {
+    "title": "📩 Usaidizi",
+    "content": "Ikiwa una tatizo la kufikia kozi, tafadhali wasiliana nasi kupitia ukurasa wa mawasiliano. Tutakujibu ndani ya saa 48 za kazi."
+  },
+  "footer": {
+    "text": "Kwa maswali yoyote kuhusu ununuzi wako au haki zako, tafadhali tembelea ukurasa wetu wa faragha au tuandikie kupitia ukurasa wa mawasiliano."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "faqTitle": "Mituna oyo ebungaka mingi",
+  "faqIntro": "Talá biyano na mituna nyonso liboso okóta na boyekoli.",
+  "questions": [
+    {
+      "question": "Ndenge nini nakoki kokóma na cours ?",
+      "answer": "Kende na page ya inscription, sala compte, mpe poná cours olingi."
+    },
+    {
+      "question": "Cours ezali na certificat ?",
+      "answer": "Ɛɛ, sima ya cours, okoki kokɔta certificat oyo bandimaka."
+    },
+    {
+      "question": "Nakosala boni mpo na kokanga cours ?",
+      "answer": "Simá ya inscription, ozali na accès ya seko na cours."
+    },
+    {
+      "question": "Cours ekoki kosalelama na téléphone ?",
+      "answer": "Ɛɛ, cours na biso ekoki kosalelama na téléphone, tablette, mpe ordinateur."
+    }
+  ],
+  "newsletterTitle": "Kóma na lisolo na biso ya sango",
+  "newsletterText": "Yeba sango ya mateya ya sika, offres spéciaux, mpe biloko ya kosalisa yo kobakisa mayele.",
+  "newsletterPlaceholder": "Adrese na yo ya email",
+  "newsletterButton": "Nalingi kokóma"
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Confidentialité et Sécurité",
+  "intro": "Chez ExcellHub, la confidentialité et la sécurité de vos données sont une priorité. Nous nous engageons à protéger les informations personnelles que vous partagez avec nous, et à garantir leur utilisation responsable.",
+  "dataCollected": {
+    "title": "📥 Quelles données collectons-nous ?",
+    "items": [
+      "Votre nom, prénom et adresse e-mail",
+      "Votre numéro de téléphone et votre ville",
+      "Les cours que vous suivez ou publiez",
+      "Les messages envoyés et reçus sur la plateforme"
+    ]
+  },
+  "dataUsage": {
+    "title": "🔧 Comment utilisons-nous vos données ?",
+    "description": "Les informations collectées servent à :",
+    "items": [
+      "Améliorer votre expérience d’apprentissage",
+      "Personnaliser les cours proposés",
+      "Vous envoyer des notifications ou des emails utiles",
+      "Assurer la sécurité de votre compte"
+    ]
+  },
+  "dataSharing": {
+    "title": "🤝 Partage de vos informations",
+    "description": "Nous ne partageons vos données personnelles avec aucun tiers sans votre consentement, sauf en cas d'obligation légale ou pour le bon fonctionnement de la plateforme."
+  },
+  "security": {
+    "title": "🛡️ Sécurité des données",
+    "description": "Toutes vos informations sont stockées de manière sécurisée. Nous utilisons des technologies de cryptage, d’authentification et des bonnes pratiques de sécurité pour protéger vos données contre tout accès non autorisé."
+  },
+  "yourRights": {
+    "title": "🧾 Vos droits",
+    "description": "Vous pouvez à tout moment :",
+    "items": [
+      "Accéder à vos données",
+      "Demander la modification ou la suppression de vos données",
+      "Gérer vos préférences de communication"
+    ]
+  },
+  "contact": {
+    "text": "Si vous avez des questions concernant notre politique de confidentialité ou de sécurité, n’hésitez pas à nous contacter via la page",
+    "link": "contact"
+  }
+}

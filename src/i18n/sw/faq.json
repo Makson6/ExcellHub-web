@@ -1,0 +1,26 @@
+{
+  "faqTitle": "Maswali Yanayoulizwa Mara Kwa Mara",
+  "faqIntro": "Pata majibu ya maswali yako kabla ya kuanza kozi.",
+  "questions": [
+    {
+      "question": "Ninawezaje kujiandikisha kwenye kozi ?",
+      "answer": "Nenda kwenye ukurasa wa usajili, tengeneza akaunti kisha chagua kozi unayotaka."
+    },
+    {
+      "question": "Je, kozi zina cheti ?",
+      "answer": "Ndiyo, baada ya kozi, unaweza kupakua cheti kinachotambulika."
+    },
+    {
+      "question": "Nitakuwa na muda gani wa kufikia kozi ?",
+      "answer": "Baada ya kujisajili, utakuwa na ufikiaji wa kozi milele."
+    },
+    {
+      "question": "Je, kozi zinapatikana kwenye simu ya mkononi ?",
+      "answer": "Kabisa! Kozi zetu zinaweza kufikiwa kupitia simu, kompyuta kibao, na kompyuta ya kawaida."
+    }
+  ],
+  "newsletterTitle": "Jiunge na jarida letu",
+  "newsletterText": "Pata taarifa kuhusu kozi mpya, ofa maalum, na nyenzo muhimu za kukuza ujuzi wako.",
+  "newsletterPlaceholder": "Anwani yako ya barua pepe",
+  "newsletterButton": "Jiandikishe"
+}

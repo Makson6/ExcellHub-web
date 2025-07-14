@@ -1,0 +1,23 @@
+{
+  "title": "📘 Conditions Générales de Vente (CGV)",
+  "intro": "Ces conditions générales s’appliquent à toute commande de cours en ligne sur la plateforme Excell-is-Hub App. En achetant un cours, vous acceptez automatiquement ces conditions.",
+  "payment": {
+    "title": "💳 Modalités de paiement",
+    "content": "Le paiement s’effectue en ligne via des moyens sécurisés. Une fois le paiement confirmé, l’utilisateur obtient un accès immédiat au cours concerné."
+  },
+  "delivery": {
+    "title": "📦 Livraison des contenus",
+    "content": "Tous les contenus (vidéos, documents, quiz, etc.) sont livrés de façon numérique et accessibles via votre espace personnel."
+  },
+  "withdrawal": {
+    "title": "⏱️ Droit de rétractation",
+    "content": "Conformément aux lois en vigueur, le droit de rétractation ne s’applique pas aux contenus numériques consommés immédiatement après achat."
+  },
+  "support": {
+    "title": "📩 Assistance",
+    "content": "En cas de problème d’accès à un cours, vous pouvez nous contacter via la page contact. Nous répondrons dans un délai de 48h ouvrées."
+  },
+  "footer": {
+    "text": "Pour toute question concernant vos achats ou vos droits, merci de consulter notre page confidentialité ou de nous écrire via contact."
+  }
+}

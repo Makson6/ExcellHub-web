@@ -1,0 +1,44 @@
+{
+  "title": "Bokangami mpe Bokebi",
+  "intro": "Na ExcellHub, bokangami mpe bokebi ya ba données na bino ezali priorite. Tokangami na kobatela makambo ya moto boye bo pesa biso, mpe kosalela yango na ndenge ebongi.",
+  "dataCollected": {
+    "title": "📥 Nini tozali kokɔtɔla?",
+    "items": [
+      "Kombo, post-nom, na adresse email na yo",
+      "Numéro ya telefone na engumba na yo",
+      "Ba cours oyo ozali kolanda to kopesa",
+      "Ba messages oyo otindi to ozwi na plateforme"
+    ]
+  },
+  "dataUsage": {
+    "title": "🔧 Ndenge nini tosalelaka ba données na yo?",
+    "description": "Ba informations oyo tokɔtɔli esalelaka mpo na :",
+    "items": [
+      "Kobongisa expérience na yo ya formation",
+      "Kopesa ba cours oyo ekokani na mposa na yo",
+      "Kotindela yo ba notifications to emails ya ntina",
+      "Kobatela sécurité ya compte na yo"
+    ]
+  },
+  "dataSharing": {
+    "title": "🤝 Kokabola ba informations na yo",
+    "description": "Tokaboli te ba données ya moto na bato mosusu soki ozali te kopesa ndingisa, longola kaka soki ezali na mokumba ya mibeko to mpo na fonctionnement ya plateforme."
+  },
+  "security": {
+    "title": "🛡️ Sécurité ya ba données",
+    "description": "Ba informations na yo ebatami malamu. Tosalelaka ba technologie ya encryption, ba identification, mpe ba mayele ya sécurité mpo na kobatela ba données na yo."
+  },
+  "yourRights": {
+    "title": "🧾 Makoki na yo",
+    "description": "Okoki na tango nyonso :",
+    "items": [
+      "Kokota na ba données na yo",
+      "Kosenga ebongiseli to bolongolami ya ba données na yo",
+      "Kobongisa ndenge ozali kozwa ba informations"
+    ]
+  },
+  "contact": {
+    "text": "Soki ozali na mituna mpo na politique na biso ya bokangami to bokebi, okoki kotuna biso na nzela ya",
+    "link": "peji ya contact"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Faragha na Usalama",
+  "intro": "Katika ExcellHub, faragha na usalama wa data zako ni kipaumbele chetu. Tumejitolea kulinda taarifa zako binafsi na kuhakikisha zinatumiwa kwa uangalifu.",
+  "dataCollected": {
+    "title": "📥 Tunakusanya taarifa gani?",
+    "items": [
+      "Jina lako kamili na anwani ya barua pepe",
+      "Nambari yako ya simu na jiji lako",
+      "Kozi unazofuatilia au kuchapisha",
+      "Ujumbe uliotuma au kupokea kwenye jukwaa"
+    ]
+  },
+  "dataUsage": {
+    "title": "🔧 Tunazitumiaje taarifa zako?",
+    "description": "Taarifa zinazokusanywa hutumika kwa:",
+    "items": [
+      "Kuboresha uzoefu wako wa kujifunza",
+      "Kubinafsisha kozi unazoonyeshwa",
+      "Kukutumia arifa au barua pepe muhimu",
+      "Kuhakikisha usalama wa akaunti yako"
+    ]
+  },
+  "dataSharing": {
+    "title": "🤝 Kushiriki taarifa zako",
+    "description": "Hatushiriki taarifa zako binafsi na mtu wa tatu bila idhini yako, isipokuwa kwa wajibu wa kisheria au kwa ajili ya uendeshaji mzuri wa jukwaa."
+  },
+  "security": {
+    "title": "🛡️ Usalama wa data",
+    "description": "Taarifa zako zote huhifadhiwa kwa usalama. Tunatumia teknolojia za usimbaji, uthibitishaji na mbinu bora za usalama kulinda data zako dhidi ya upatikanaji usioidhinishwa."
+  },
+  "yourRights": {
+    "title": "🧾 Haki zako",
+    "description": "Unaweza wakati wowote:",
+    "items": [
+      "Kupata taarifa zako",
+      "Kuomba kurekebisha au kufuta taarifa zako",
+      "Kudhibiti mapendeleo ya mawasiliano"
+    ]
+  },
+  "contact": {
+    "text": "Ikiwa una maswali kuhusu sera yetu ya faragha au usalama, tafadhali wasiliana nasi kupitia",
+    "link": "ukurasa wa mawasiliano"
+  }
+}

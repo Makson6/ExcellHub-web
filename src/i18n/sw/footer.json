@@ -1,0 +1,32 @@
+{
+  "readyTitle": "Uko tayari kuongeza ujuzi wako?",
+  "readySubtitle": "Jiunge na jamii yetu ya wanaojifunza na anza masomo yako yenye vyeti!",
+  "createAccount": "Fungua akaunti yako",
+  "socialTitle": "Mitandao ya Kijamii",
+  "social": {
+    "tiktok": "Tiktok",
+    "facebook": "Facebook",
+    "whatsapp": "Whatsapp",
+    "instagram": "Instagram"
+  },
+  "productTitle": "Bidhaa",
+  "product": {
+    "videoLesson": "Masomo ya Video",
+    "languageExchange": "Kubadilishana Lugha",
+    "speakingPractice": "Mazoezi ya Kuongea",
+    "quizzes": "Maswali ya Haraka"
+  },
+  "supportTitle": "Usaidizi",
+  "support": {
+    "helpCenter": "Kituo cha Msaada",
+    "tutorials": "Mafunzo",
+    "contactUs": "Wasiliana Nasi",
+    "faqs": "Maswali Yanayoulizwa Sana",
+    "feedback": "Maoni"
+  },
+  "contactTitle": "Mawasiliano",
+  "privacy": "Faragha",
+  "terms": "Masharti",
+  "conditions": "Masharti na Vigezo",
+  "rights": "Haki zote zimehifadhiwa 2025"
+}
