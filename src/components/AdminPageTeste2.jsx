@@ -21,6 +21,7 @@ import SuspendUserModal from "./admin/SuspendUserModal";
 import AddCourseModal from "./admin/AddCourseModal";
 import toast from "react-hot-toast";
 import UserNotConnected from "./UserNotConnected";
+import DeleteUserModal from "./admin/DeleteUserModal";
 
 const AdminDashboard2 = () => {
   const [theUser, setTheUser] = useState(null);
@@ -47,6 +48,7 @@ const AdminDashboard2 = () => {
   const [showSuspendModal, setShowSuspendModal] = useState(false);
   const [userToSuspend, setUserToSuspend] = useState(null);
   const [showAddCourseModal, setShowAddCourseModal] = useState(false);
+  const [showDellUserModal, setShowDellUserModal] = useState(false);
 
   const pageSize = 3;
 
@@ -84,16 +86,6 @@ const AdminDashboard2 = () => {
     };
     fetchAll();
   }, []);
-
-  // coursesData.forEach((course) => {
-  //   if (course.status === "PUBLISHED") {
-  //     console.log("✅ Cours publié :", course.title);
-  //   } else if (course.status === "IN_CHECKING") {
-  //     console.log("⏳ En attente :", course.title);
-  //   } else {
-  //     console.log("❓ Autre statut :", course.title);
-  //   }
-  // });
 
   if (theUser === null) return <UserNotADMIN />;
   const Role = theUser.role;
@@ -185,12 +177,12 @@ const AdminDashboard2 = () => {
             >
               ➕ Créer un administrteur
             </button>
-            {/* <button
-              disabled
-              className="bg-red-600 text-white px-3 py-1 rounded opacity-30"
-              >
-              🚫 Suspendre un utilisateur
-              </button> */}
+            <button
+              onClick={() => setShowDellUserModal(true)}
+              className="bg-red-600 text-white px-3 py-1 cursor-pointer hover:bg-red-700 rounded opacity-80"
+            >
+              🚫 Supprimer un utilisateur
+            </button>
             <Link
               to={"/admin/newsletter"}
               className="bg-sky-950 hover:bg-black text-white px-3 py-1 rounded "
@@ -409,6 +401,9 @@ const AdminDashboard2 = () => {
       )}
       {showCreateAdminModal && (
         <CreateAdminModal onClose={() => setShowCreateAdminModal(false)} />
+      )}
+      {showDellUserModal && (
+        <DeleteUserModal onClose={() => setShowDellUserModal(false)} />
       )}
 
       {showSuspendModal && userToSuspend && (
