@@ -3,10 +3,8 @@ import { useAuthStore } from "../../../store/useAuthStore";
 import StudentDashboard from "./Student";
 import AdminDashboard from "./Admin";
 import TeacherDashboard from "./Teacher";
-import Login from "../../Login";
 import { useLocation, useNavigate } from "react-router-dom";
 import AdminDashboard2 from "../../../components/AdminPageTeste2";
-import toast from "react-hot-toast";
 
 export default function Dashboard() {
   const { user, vraiUser } = useAuthStore();
@@ -24,7 +22,6 @@ export default function Dashboard() {
   useEffect(() => {
     if (loading) {
       setTimeout(() => {
-        toast.error("Connect your account please!");
         setLoading(false);
       }, 10000);
     }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -18,6 +18,7 @@ import UserNotConnected from "../../../components/UserNotConnected";
 import api from "../../../api/Axios";
 
 const AdminDashboard = ({ user }) => {
+  const navigate = useNavigate();
   // Simulations de données
   const stats = {
     totalStudents: 125,
@@ -147,7 +148,10 @@ const AdminDashboard = ({ user }) => {
               🚫 Suspendre un utilisateur
             </button>
             <button
-              onClick={() => setShowAddCourseModal(true)}
+              onClick={() => {
+                navigate("/teacher-dashboard");
+              }}
+              // onClick={() => setShowAddCourseModal(true)}
               className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
             >
               ➕ Ajouter un cours

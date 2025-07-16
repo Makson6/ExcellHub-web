@@ -72,23 +72,16 @@ const router = createBrowserRouter([
 
       {
         path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/teacher-dashboard",
-        element: <TeacherDashboard />,
-      },
-      {
-        path: "/student-dashboard",
-        element: <StudentDashboard />,
-      },
-      {
-        path: "/admin-dashboard",
-        element: <AdminDashboard2 />,
-      },
-      {
-        path: "/dashboard/profile",
-        element: <ProfilePage />,
+        children: [
+          { path: "", element: <Dashboard /> },
+          { path: "/dashboard/admin", element: <AdminDashboard2 /> },
+          { path: "/dashboard/teacher", element: <TeacherDashboard /> },
+          { path: "/dashboard/student", element: <StudentDashboard /> },
+          {
+            path: "/dashboard-profile",
+            element: <ProfilePage />,
+          },
+        ],
       },
 
       {
@@ -160,10 +153,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
+  // {
+  //   path: "*",
+  //   element: <NotFound />,
+  // },
 ]);
 
 export default router;

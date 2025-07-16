@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTeacherStore } from "../../../store/useTeacherStore";
 import { motion } from "framer-motion";
 import api from "../../../api/Axios";
@@ -28,6 +28,7 @@ const TeacherDashboard = () => {
   const fetchMyCourses = async () => {
     try {
       const res = await api.get("/api/courses/my-courses");
+
       useTeacherStore.setState({ courses: res.data.courses });
     } catch (err) {
       console.error("Erreur de chargement des cours :", err.status);
@@ -65,11 +66,13 @@ const TeacherDashboard = () => {
         console.error("Erreur de chargement des cours :", err.status);
       }
     };
-
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
     fetchMyCourses();
     fetchUser();
   }, []);
-
+  console.log(user);
   // Affichage pendant chargement
   if (loading) {
     return (
@@ -129,8 +132,8 @@ const TeacherDashboard = () => {
   return (
     <div className="min-h-screen py-10 px-4 sm:px-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        {/* Header user */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 mb-0 bg-white dark:bg-gray-800 rounded-lg shadow">
           <div
             className="flex items-center gap-4 cursor-pointer"
             onClick={() => navigate("/dashboard/profile")}
@@ -141,20 +144,33 @@ const TeacherDashboard = () => {
               alt="Avatar"
             />
             <div>
-              <h1 className="text-2xl font-bold">
-                Bonjour {user?.fullName || "Enseignant"}
-              </h1>
+              <h1 className="text-3xl font-bold">Admin {user.fullName}</h1>
               <p className="text-gray-500">{user?.email}</p>
             </div>
           </div>
-          <span
-            onClick={verifyMe}
-            className="text-red-600 animate-bounce cursor-pointer hover:scale-110 flex ml-9 "
-          >
-            {statusAccount === "VERIFIED" ? "" : <>Verify my account</>}
-          </span>
         </div>
-
+        <div className="comptes mt-3 flex gap-9 justify-center items-center">
+          {[
+            { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
+            { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
+            {
+              to: "/dashboard/admin",
+              label: "     👤 Mon compte Aministrateur",
+            },
+          ].map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-gray-600/20 text-white p-1 rounded cursor-not-allowed"
+                  : "bg-orange-600 text-white p-1 cursor-pointer hover:scale-150 rounded hover:bg-green-700"
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
         {/* Actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <button

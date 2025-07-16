@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { LoaderIcon, toast } from "react-hot-toast";
 import ApiHistory from "../api/ApiHistory";
 
 import {
@@ -114,7 +114,9 @@ export default function Register() {
               }
             `}
           >
-            {Loading && <Loader2 className="animate-spin h-5 w-5 text-white" />}
+            {Loading && (
+              <LoaderIcon className="animate-spin h-5 w-5 text-white" />
+            )}
             <span className="dark:text-white">
               {Loading ? "création en cours..." : "Créer Mon Compte"}
             </span>

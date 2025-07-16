@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -24,6 +24,7 @@ import UserNotConnected from "./UserNotConnected";
 import DeleteUserModal from "./admin/DeleteUserModal";
 
 const AdminDashboard2 = () => {
+  const navigate = useNavigate();
   const [theUser, setTheUser] = useState(null);
   const [stats, setStats] = useState({
     totalStudents: 0,
@@ -159,44 +160,78 @@ const AdminDashboard2 = () => {
   return (
     <div className="min-h-screen py-10 px-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-6xl mx-auto space-y-10">
-        <header>
-          <h1 className="text-3xl font-bold">Admin {theUser.fullName}</h1>
-          <p className="mt-1 text-gray-600 dark:text-gray-300">
-            Gérez les comptes, cours et contenus de la plateforme.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button
-              onClick={() => setShowCreateTeacherModal(true)}
-              className="bg-blue-600 text-white px-3 py-1 cursor-pointer rounded hover:bg-blue-700"
-            >
-              ➕ Créer un formateur
-            </button>
-            <button
-              onClick={() => setShowCreateAdminModal(true)}
-              className="bg-amber-600 text-white px-3 py-1 cursor-pointer rounded hover:bg-amber-700"
-            >
-              ➕ Créer un administrteur
-            </button>
-            <button
-              onClick={() => setShowDellUserModal(true)}
-              className="bg-red-600 text-white px-3 py-1 cursor-pointer hover:bg-red-700 rounded opacity-80"
-            >
-              🚫 Supprimer un utilisateur
-            </button>
-            <Link
-              to={"/admin/newsletter"}
-              className="bg-sky-950 hover:bg-black text-white px-3 py-1 rounded "
-            >
-              📬 Gerer les news letter
-            </Link>
-            <button
-              onClick={() => setShowAddCourseModal(true)}
-              className="bg-green-600 text-white px-3 cursor-pointer py-1 rounded hover:bg-green-700"
-            >
-              ➕ Ajouter un cours
-            </button>
+        {/* Header user */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 mb-0 bg-white dark:bg-gray-800 rounded-lg shadow">
+          <div
+            className="flex items-center gap-4 cursor-pointer"
+            onClick={() => navigate("/dashboard/profile")}
+          >
+            <img
+              className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
+              src={theUser?.avatar || "/default-avatar.png"}
+              alt="Avatar"
+            />
+            <div>
+              <h1 className="text-3xl font-bold">Admin {theUser.fullName}</h1>
+              <p className="text-gray-500">{theUser?.email}</p>
+            </div>
           </div>
-        </header>
+        </div>
+        <div className="comptes mt-3 flex gap-9 justify-center items-center">
+          {[
+            { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
+            { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
+            {
+              to: "/dashboard/admin",
+              label: "     👤 Mon compte Aministrateur",
+            },
+          ].map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-gray-600/20 text-white p-1 rounded cursor-not-allowed"
+                  : "bg-orange-600 text-white p-1 cursor-pointer hover:scale-150 rounded hover:bg-green-700"
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <button
+            onClick={() => setShowCreateTeacherModal(true)}
+            className="bg-blue-600 text-white px-3 py-1 cursor-pointer rounded hover:bg-blue-700"
+          >
+            ➕ Créer un formateur
+          </button>
+          <button
+            onClick={() => setShowCreateAdminModal(true)}
+            className="bg-amber-600 text-white px-3 py-1 cursor-pointer rounded hover:bg-amber-700"
+          >
+            ➕ Créer un administrteur
+          </button>
+          <button
+            onClick={() => setShowDellUserModal(true)}
+            className="bg-red-600 text-white px-3 py-1 cursor-pointer hover:bg-red-700 rounded opacity-80"
+          >
+            🚫 Supprimer un utilisateur
+          </button>
+          <Link
+            to={"/admin/newsletter"}
+            className="bg-sky-950 hover:bg-black text-white px-3 py-1 rounded "
+          >
+            📬 Gerer les news letter
+          </Link>
+          <button
+            onClick={() => setShowAddCourseModal(true)}
+            className="bg-green-600 text-white px-3 cursor-pointer py-1 rounded hover:bg-green-700"
+          >
+            ➕ Ajouter un cours
+          </button>
+        </div>
+
         <div className=" flex items-center justify-center">
           <span
             onClick={verifyMe}

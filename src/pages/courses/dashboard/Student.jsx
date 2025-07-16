@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import api from "../../../api/Axios";
 import { useAuthStore } from "../../../store/useAuthStore";
 import UserNotConnected from "../../../components/UserNotConnected";
@@ -108,7 +108,28 @@ const StudentDashboard = () => {
               {checkRole()}
             </span>
           </div>
-
+          <div className="comptes mt-3 flex gap-9 justify-center items-center">
+            {[
+              { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
+              { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
+              {
+                to: "/dashboard/admin",
+                label: "     👤 Mon compte Aministrateur",
+              },
+            ].map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-gray-600/20 text-white p-1 rounded cursor-not-allowed"
+                    : "bg-orange-600 text-white p-1 cursor-pointer hover:scale-150 rounded hover:bg-green-700"
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
           <p className="mt-8 text-gray-600 dark:text-gray-300">
             Bienvenue ! Consultez vos cours en cours, vos progrès ainsi que vos
             certificats obtenus.

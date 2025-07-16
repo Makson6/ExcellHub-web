@@ -25,8 +25,8 @@ const AddCourseModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-60 z-50">
-      <div className="bg-white rounded p-6 space-y-4 w-full max-w-md">
+    <div className="fixed bg-sky-200/50 h-3/3 inset-0 flex  justify-center items-center  ">
+      <div className="absolute  bg-white dark:bg-midnight my-9 rounded-md p-6 space-y-4 w-full max-w-md">
         <h2 className="text-xl font-bold">Ajouter un cours</h2>
         <input
           placeholder="Titre du cours"
@@ -47,7 +47,10 @@ const AddCourseModal = ({ onClose }) => {
           >
             Ajouter comme Publié
           </button>
-          <button onClick={onClose} className="bg-gray-300 rounded p-2">
+          <button
+            onClick={onClose}
+            className="bg-gray-300 hover:bg-gray-400 dark:hover:bg-dark-bg dark:bg-dark-bg/60 cursor-pointer rounded p-2"
+          >
             Annuler
           </button>
         </div>

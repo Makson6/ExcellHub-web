@@ -63,9 +63,9 @@ const Navbar = () => {
           {[
             { to: "/courses", label: t("allCourses") },
             { to: "/dashboard", label: t("dashboard") },
-            { to: "/student-dashboard", label: t("student") },
-            { to: "/teacher-dashboard", label: t("teacher") },
-            { to: "/admin-dashboard", label: t("admin") },
+            { to: "/dashboard/student", label: t("student") },
+            { to: "/dashboard/teacher", label: t("teacher") },
+            { to: "/dashboard/admin", label: t("admin") },
           ].map((link) => (
             <NavLink
               key={link.to}
