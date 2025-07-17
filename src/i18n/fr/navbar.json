@@ -6,7 +6,7 @@
   "admin": "Admin",
   "logout": "Se déconnecter",
   "login": " Connexion",
-
   "profile": "Profile",
-  "about": "A Propos"
+  "about": "A Propos",
+  "home": "Accueil"
 }

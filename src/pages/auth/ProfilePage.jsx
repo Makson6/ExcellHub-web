@@ -21,7 +21,6 @@ const ProfilePage = () => {
   } = useForm();
 
   const [avatarPreview, setAvatarPreview] = useState(null);
-  // const [avatarPreview, setAvatarPreview] = useState("");
 
   const handleCheck = async () => {
     const toastId = toast.loading("Vérification en cours...");
@@ -45,7 +44,6 @@ const ProfilePage = () => {
       setAvatarPreview(user.avatar || "");
     }
   }, [user, reset]);
-
   const avatarFile = watch("avatar");
 
   useEffect(() => {
@@ -107,7 +105,7 @@ const ProfilePage = () => {
     <div className="mt-20 max-w-2xl w-full mx-auto p-6 bg-white dark:bg-[var(--dark-primary)] dark:text-[var(--light-zinc)] rounded-lg shadow-lg">
       <h2 className="flex items-center gap-2 text-2xl font-bold mb-6">
         Mon Profil
-        {accountStatus && <CopyCheckIcon className="text-green-500 w-6 h-6" />}
+        {!accountStatus && <CopyCheckIcon className="text-green-500 w-6 h-6" />}
       </h2>
 
       <form

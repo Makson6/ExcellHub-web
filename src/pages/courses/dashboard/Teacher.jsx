@@ -108,7 +108,7 @@ const TeacherDashboard = () => {
     BEGINNER: "Débutant",
     ADVANCED: "Avancé",
   };
-  const statusAccount = user.statusAccount;
+  const statusAccount = user?.statusAccount;
 
   const verifyMe = () => {
     const toastId = toast.loading("loading...");
@@ -133,23 +133,29 @@ const TeacherDashboard = () => {
     <div className="min-h-screen py-10 px-4 sm:px-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header user */}
-        <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 mb-0 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
           <div
-            className="flex items-center gap-4 cursor-pointer"
+            className="flex flex-col  w-full  md:flex-row items-center gap-4 cursor-pointer"
             onClick={() => navigate("/dashboard/profile")}
           >
-            <img
-              className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
-              src={user?.avatar || "/default-avatar.png"}
-              alt="Avatar"
-            />
+            {user?.avatar ? (
+              <img
+                className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
+                src={user?.avatar}
+                alt="Avatar"
+              />
+            ) : (
+              <span className="flex items-center justify-center overflow-hidden w-20 h-20 rounded-full object-cover ring-2 ring-blue-500">
+                <span className="text-6xl text-center">{"🤵🏿"}</span>
+              </span>
+            )}
             <div>
               <h1 className="text-3xl font-bold">Admin {user.fullName}</h1>
               <p className="text-gray-500">{user?.email}</p>
             </div>
           </div>
         </div>
-        <div className="comptes mt-3 flex gap-9 justify-center items-center">
+        <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
           {[
             { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
             { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
@@ -170,6 +176,14 @@ const TeacherDashboard = () => {
               {link.label}
             </NavLink>
           ))}
+        </div>
+        <div className=" flex items-center justify-center">
+          <span
+            onClick={verifyMe}
+            className=" w-fit text-red-600 hover:animate-bounce cursor-pointer hover:text-red-700 animate-none "
+          >
+            {statusAccount === "VERIFIED" ? "" : <>Verify my account</>}
+          </span>
         </div>
         {/* Actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

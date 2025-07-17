@@ -143,10 +143,9 @@ const AdminDashboard2 = () => {
       api.post("/api/auth/verify-user-email");
       if (toastId) {
         setTimeout(() => {
-          toast.success(
-            "a verification mail will be send on your email adress!",
-            { id: toastId }
-          );
+          toast.success("verification email was sent on your adress!", {
+            id: toastId,
+          });
         }, 4000);
       }
     } catch (error) {
@@ -156,21 +155,26 @@ const AdminDashboard2 = () => {
       toast.remove("");
     }
   };
-
   return (
     <div className="min-h-screen py-10 px-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-6xl mx-auto space-y-10">
         {/* Header user */}
         <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 mb-0 bg-white dark:bg-gray-800 rounded-lg shadow">
           <div
-            className="flex items-center gap-4 cursor-pointer"
+            className="flex flex-col  w-full  md:flex-row items-center gap-4 cursor-pointer"
             onClick={() => navigate("/dashboard/profile")}
           >
-            <img
-              className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
-              src={theUser?.avatar || "/default-avatar.png"}
-              alt="Avatar"
-            />
+            {theUser?.avatar ? (
+              <img
+                className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
+                src={theUser?.avatar}
+                alt="Avatar"
+              />
+            ) : (
+              <span className="flex items-center justify-center overflow-hidden w-20 h-20 rounded-full object-cover ring-2 ring-blue-500">
+                <span className="text-6xl text-center">{"🤵🏿"}</span>
+              </span>
+            )}
             <div>
               <h1 className="text-3xl font-bold">Admin {theUser.fullName}</h1>
               <p className="text-gray-500">{theUser?.email}</p>

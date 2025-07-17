@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const StudentDashboard = () => {
   const navigate = useNavigate();
   const [enrollments, setEnrollments] = useState([]);
+  const [statusAccount, setStatusAccount] = useState(false);
   const { user } = useAuthStore();
 
   useEffect(() => {
@@ -57,24 +58,20 @@ const StudentDashboard = () => {
 
   if (user === null) return <UserNotConnected />;
 
-  const checkRole = () => {
-    const statusAccount = user.statusAccount;
-    if (statusAccount === "VERIFIED") {
-      <>''</>;
-    } else <>Verify my account</>;
-  };
-  const verifyMe = () => {
+  if (user?.statusAccount === "VERIFIED") {
+    setStatusAccount(true);
+  }
+
+  const verifyMe = async () => {
     const toastId = toast.loading("loading...");
     try {
-      api.post("/api/auth/verify-user-email");
-      if (toastId) {
-        setTimeout(() => {
-          toast.error("Error Time-out", { id: toastId });
-        }, 6000);
-      }
+      await api.post("/api/auth/verify-user-email");
+      toast.success("a verification mail will be send on your email adress!", {
+        id: toastId,
+      });
     } catch (error) {
       console.log("eereur de verification du mail:", error);
-      toast.error("email error", { id: toastId });
+      toast.error(error.message, { id: toastId });
     } finally {
       toast.remove("");
     }
@@ -86,14 +83,20 @@ const StudentDashboard = () => {
           {/* Header user */}
           <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
             <div
-              className="flex items-center gap-4 cursor-pointer"
+              className="flex flex-col  w-full  md:flex-row items-center gap-4 cursor-pointer"
               onClick={() => navigate("/dashboard/profile")}
             >
-              <img
-                className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
-                src={user?.avatar || "/default-avatar.png"}
-                alt="Avatar"
-              />
+              {user?.avatar ? (
+                <img
+                  className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
+                  src={user?.avatar}
+                  alt="Avatar"
+                />
+              ) : (
+                <span className="flex items-center justify-center overflow-hidden w-20 h-20 rounded-full object-cover ring-2 ring-blue-500">
+                  <span className="text-6xl text-center">{"🤵🏿"}</span>
+                </span>
+              )}
               <div>
                 <h1 className="text-2xl font-bold">
                   Bonjour {user?.fullName || "Eleve"}
@@ -105,10 +108,10 @@ const StudentDashboard = () => {
               onClick={verifyMe}
               className="text-red-600 animate-bounce cursor-pointer hover:scale-110 flex ml-9 "
             >
-              {checkRole()}
+              {statusAccount ? <p>'</p> : <p>verify my account</p>}
             </span>
           </div>
-          <div className="comptes mt-3 flex gap-9 justify-center items-center">
+          <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
             {[
               { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
               { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
@@ -178,11 +181,11 @@ const StudentDashboard = () => {
         {/* Quiz à passer */}
         <section>
           <h2 className="text-2xl font-semibold">
-            <span className="text-4xl">🗒️</span>
+            <span className="text-3xl">🗒️</span>
             {""}Quiz à passer
           </h2>
           <div className="mt-4 space-y-3">
-            {quizzes.length > 0 ? (
+            {quizzes.length < 0 ? (
               quizzes.map((quiz, index) => (
                 <div
                   key={index}
@@ -209,7 +212,7 @@ const StudentDashboard = () => {
             <span className="text-4xl">🎓</span> {""}Certificats obtenus
           </h2>
           <div className="mt-4 space-y-3">
-            {certificates.length > 0 ? (
+            {certificates.length < 0 ? (
               certificates.map((certif, index) => (
                 <div
                   key={index}

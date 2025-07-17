@@ -8,12 +8,13 @@ import LanguageSelector from "../LanguageSelector";
 export function MobileMenu({ onClose, isAuthenticated, onLogout }) {
   const { t } = useTranslation("navbar");
   const links = [
-    { path: "/", label: "Accueil" },
+    { path: "/", label: t("home") },
     { path: "/courses", label: t("allCourses") },
     { path: "/dashboard", label: t("dashboard") },
-    { path: "/admin-dashboard", label: t("admin") },
-    { path: "/teacher-dashboard", label: t("teacher") },
-    { path: "/student-dashboard", label: t("student") },
+    // { path: "/dashboard", label: t("profile") },
+    // { path: "/admin-dashboard", label: t("admin") },
+    // { path: "/teacher-dashboard", label: t("teacher") },
+    // { path: "/student-dashboard", label: t("student") },
     { path: "/about", label: t("about") },
     { path: "/contact", label: "Contacts" },
   ];
