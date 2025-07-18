@@ -4,11 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 const NotFound = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
-    }, 4000);
-  });
+      try {
+        navigate(-1);
+      } catch (error) {
+        console.log(error);
+
+        navigate("/");
+      }
+    }, 1000);
+  }, []);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 p-6">
       <div className="w-72 md:w-96">

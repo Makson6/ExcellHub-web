@@ -35,6 +35,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#about,
+#contact,
+#faq,
+#about {
+  scroll-margin-top: 280px;
+  padding-top: 20px;
+}
 
 /* button {
   @apply font-serf: Times;

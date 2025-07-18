@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import FaqSection from "../components/FaqQuestions";
 import { toast } from "react-hot-toast";
@@ -9,6 +9,16 @@ import ApiHistory from "../api/ApiHistory";
 const Home = () => {
   const { t } = useTranslation("home");
   const [courses, setCourses] = useState([]);
+  const location = useLocation();
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -101,29 +111,41 @@ const Home = () => {
       </div>
 
       {/* À PROPOS */}
-      <section className="py-3 text-center dark:text-white px-4">
-        <h2 className="text-3xl font-bold">{t("aboutTitle")}</h2>
-        <p className="mt-6 max-w-2xl mx-auto cursor-pointer  text-lg text-[var(--color-text-light)] dark:text-gray-400">
-          {t("aboutText")}{" "}
-          <Link className="text-secondary hover:underline" to="/about">
-            {t("readMore")}?
-          </Link>
-        </p>
-      </section>
+      <div
+        id="about"
+        className="h-2/3 w-full py-12  flex items-center justify-center "
+      >
+        <section className="py-3 text-center dark:text-white px-4">
+          <h2 className="text-3xl font-bold">{t("aboutTitle")}</h2>
+          <p className="mt-6 max-w-2xl mx-auto cursor-pointer  text-lg text-[var(--color-text-light)] dark:text-gray-400">
+            {t("aboutText")} <br />
+            <Link className="text-secondary hover:underline" to="/about">
+              {t("readMore")}?
+            </Link>
+          </p>
+        </section>
+      </div>
 
       {/* CONTACT */}
-      <section className=" dark:text-white py-16 text-center px-4">
+      {/* <div
+        id="contact"
+        className="h-2/3 w-full py-12  flex items-center justify-center "
+      > */}
+      <section id="contact" className=" dark:text-white py-16 text-center px-4">
         <h2 className="text-3xl font-bold">{t("contactTitle")}</h2>
-        <p className="mt-6 max-w-2xl mx-auto text-lg text-[var(--color-text-light)] dark:text-gray-400">
+        <p className="my-6 max-w-2xl mx-auto text-lg text-[var(--color-text-light)] dark:text-gray-400">
           {t("contactText")} <br />
           <Link className="text-secondary hover:underline" to="/contact">
             contact
           </Link>
         </p>
       </section>
+      {/* </div> */}
 
       {/* FAQ + FOOTER */}
-      <FaqSection />
+      <span id="faq">
+        <FaqSection />
+      </span>
       <Footer />
     </>
   );

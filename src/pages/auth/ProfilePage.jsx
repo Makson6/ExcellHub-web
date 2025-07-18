@@ -6,6 +6,7 @@ import api from "../../api/Axios.js";
 import { toast } from "react-hot-toast";
 import { PhoneNumberInput } from "../../components/Inputs.jsx";
 import { CopyCheckIcon } from "lucide-react";
+import { useSyncExternalStore } from "react";
 
 const ProfilePage = () => {
   const user = useAuthStore((state) => state.user);
@@ -56,6 +57,7 @@ const ProfilePage = () => {
     }
   }, [avatarFile]);
 
+  console.log(useSyncExternalStore);
   const onSubmit = async (data) => {
     const { fullName, email, mobile } = data;
     const image = data.avatar?.[0];
@@ -65,9 +67,7 @@ const ProfilePage = () => {
         const formData = new FormData();
         formData.append("avatar", image);
 
-        const res = await api.put("/api/auth/update-avatar", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        const res = await api.put("/api/auth/update-avatar", formData);
 
         const newAvatarUrl = res.data.avatarUrl;
         setUser((prev) => ({ ...prev, avatar: newAvatarUrl }));
@@ -98,11 +98,9 @@ const ProfilePage = () => {
     }
   };
 
-  console.log(user);
-
   const accountStatus = "VERIFIED";
   return (
-    <div className="mt-20 max-w-2xl w-full mx-auto p-6 bg-white dark:bg-[var(--dark-primary)] dark:text-[var(--light-zinc)] rounded-lg shadow-lg">
+    <div className="mt-20 max-w-2xl w-full mx-auto p-6 bg-white dark:bg-dark-bg dark:text-light  rounded-lg shadow-lg">
       <h2 className="flex items-center gap-2 text-2xl font-bold mb-6">
         Mon Profil
         {!accountStatus && <CopyCheckIcon className="text-green-500 w-6 h-6" />}
@@ -131,13 +129,38 @@ const ProfilePage = () => {
               </button>
             )}
           </div>
-
+          {/* 
           {avatarPreview && (
             <img
               src={avatarPreview}
               alt="Aperçu Avatar"
               className="w-24 h-24 rounded-full object-cover mb-3 border"
             />
+          )} */}
+          {avatarPreview && (
+            <>
+              <img
+                src={avatarPreview}
+                alt="Aperçu Avatar"
+                className="w-24 h-24 rounded-full object-cover mb-3 border"
+              />
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    await api.delete("/api/auth/delete-avatar");
+                    setAvatarPreview(null);
+                    setUser((prev) => ({ ...prev, avatar: null }));
+                    toast.success("Photo supprimée !");
+                  } catch (err) {
+                    toast.error("Erreur lors de la suppression.");
+                  }
+                }}
+                className="text-red-600 text-sm underline mb-3"
+              >
+                Supprimer la photo
+              </button>
+            </>
           )}
 
           <input
@@ -193,7 +216,7 @@ const ProfilePage = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-[var(--dark-green2)] dark:hover:bg-[var(--dark-green)] text-white font-medium py-2 rounded disabled:opacity-50"
+            className="w-full bg-blue-600 hover:bg-blue-700 dark:hover:bg-primary/40 cursor-pointer dark:bg-primary/50 text-white font-medium py-2 rounded disabled:opacity-50"
           >
             {isSubmitting ? "Mise à jour..." : "Mettre à jour le profil"}
           </button>

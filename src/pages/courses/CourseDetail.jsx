@@ -19,6 +19,7 @@ const CourseDetail = () => {
   const { courseId } = useParams();
   const { user } = useAuthStore();
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
   // 🔄 Fetch du cours, rating, likes, etc.
   useEffect(() => {
@@ -45,6 +46,7 @@ const CourseDetail = () => {
       } catch (err) {
         console.error("Erreur :", err);
         toast.error("Erreur lors du chargement du cours");
+        setUser(null);
         setCourse(null);
       } finally {
         setLoading(false);

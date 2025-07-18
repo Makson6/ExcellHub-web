@@ -82,7 +82,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const GeneralConditions = () => {
-  const { t } = useTranslation("general");
+  const { t } = useTranslation("condition");
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">

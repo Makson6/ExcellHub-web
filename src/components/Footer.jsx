@@ -30,12 +30,12 @@ export default function Footer() {
       </section>
 
       {/* Footer Base */}
-      <footer className="bg-midnight text-white pt-10 pb-6 px-4 lg:px-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <footer className="bg-midnight text-white pt-10  pb-6 px-4 lg:px-12">
+        <div className="grid grid-cols-1 lg:place-items-start sm:grid-cols-2 lg:pl-4  w-full lg:grid-cols-3 gap-6 transition duration-300 ">
           {/* Réseaux Sociaux */}
-          <div>
+          <div className="flex flex-col justify-start">
             <h3 className="text-lg font-bold mb-4">{t("socialTitle")}</h3>
-            <div className="flex flex-col gap-2 text-[var(--color-text-light)]">
+            <div className="flex  flex-col  gap-2 text-[var(--color-text-light)]">
               <a
                 href="#"
                 className="flex items-center gap-2 hover:text-[var(--color-accent)]"
@@ -70,32 +70,67 @@ export default function Footer() {
           </div>
 
           {/* Produits */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-bold mb-4">Product</h3>
-            <ul className="space-y-1 text-[var(--color-text-light)]">
-              <li>Video Lessons</li>
-              <li>Ressources </li>
-              <li>Quizzes</li>
+            <ul className=" flex flex-col gap-1 text-[var(--color-text-light)]">
+              <Link
+                to="/#contact"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>Video Lessons</li>
+              </Link>{" "}
+              <Link
+                to="/#contact"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>Ressources </li>
+              </Link>{" "}
+              <Link
+                to="/#contact"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>Quizzes</li>
+              </Link>{" "}
             </ul>
-          </div>
+          </div> */}
 
           {/* Support */}
           <div>
             <h3 className="text-lg font-bold mb-4">Support</h3>
-            <ul className="space-y-1 text-[var(--color-text-light)]">
-              <li>Help Center</li>
-              <li>Contact Us</li>
-              <li>Feedback</li>
-              <li>FAQs</li>
+            <ul className=" flex flex-col gap-1 text-[var(--color-text-light)]">
+              <Link
+                to="/#contact"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>Contact Us</li>
+              </Link>{" "}
+              <Link
+                to="/contact"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>Feedback</li>
+              </Link>{" "}
+              <Link
+                to="/#about"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>About</li>
+              </Link>{" "}
+              <Link
+                to="/#faq"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>FAQs</li>
+              </Link>{" "}
             </ul>
           </div>
 
           {/* Contact */}
           <div>
             <h3 className="text-lg font-bold mb-4">Contact</h3>
-            <p className="flex items-center gap-2 text-[var(--color-text-light)]">
+            <p className="flex items-center gap-2 hover:text-accent text-[var(--color-text-light)]">
               <MdEmail />
-              excellishub@example.com
+              <a href="mailto:excellhub@gmail.com">excellishub@gmail.com</a>
             </p>
           </div>
         </div>

@@ -33,7 +33,7 @@ const FaqSection = () => {
   return (
     <>
       {/* FAQ Section */}
-      <section className=" text-black  dark:text-white py-16 px-4">
+      <section className=" text-black  dark:text-white  px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold">{t("faqTitle")}</h2>
           <p className="mt-3 text-lg text-midnight dark:text-light">

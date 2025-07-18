@@ -95,8 +95,10 @@ const TermsOfService = () => {
       </section>
 
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-2">{t("property.title")}</h2>
-        <p className="text-base">{t("property.content")}</p>
+        <h2 className="text-2xl font-semibold mb-2">
+          {t("intellectual.title")}
+        </h2>
+        <p className="text-base">{t("intellectual.content")}</p>
       </section>
 
       <section className="mb-10">
@@ -106,9 +108,9 @@ const TermsOfService = () => {
 
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-2">
-          {t("modification.title")}
+          {t("modifications.title")}
         </h2>
-        <p className="text-base">{t("modification.content")}</p>
+        <p className="text-base">{t("modifications.content")}</p>
       </section>
 
       <section className="mt-12 text-center">
