@@ -51,8 +51,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="dark:bg-[var(--dark-background)] mt-40 flex items-center justify-center">
-      <div className="relative bg-[var(--light-primary)] dark:bg-[var(--dark-primary)] p-8 rounded-lg w-full max-w-md shadow-2xl shadow-gray-950">
+    <div className=" mt-40 flex items-center dark:text-light justify-center">
+      <div className="relative dark:bg-dark-bg p-8 rounded-lg w-full max-w-md shadow-2xl shadow-gray-950">
         <Link to="/">
           <span
             className="absolute cursor-pointer hover:font-semibold text-2xl right-4 top-2 text-white"
@@ -89,7 +89,7 @@ export default function ForgotPassword() {
                 En cours d'envoi...
               </p>
             ) : (
-              <p className="flex items-center justify-center gap-2 bg-[var(--light-zinc)] hover:bg-[var(--light-hover-button)] hover:dark:bg-[var(--dark-hover-button)] dark:bg-[var(--dark-green)] rounded-md cursor-pointer w-full py-2 px-8">
+              <p className="flex items-center justify-center gap-2 bg-[var(--light-zinc)] hover:bg-[var(--light-hover-button)] hover:dark:bg-secondary/60 dark:bg-secondary/40 rounded-md cursor-pointer w-full py-2 px-8">
                 {" "}
                 Envoyer Mon Email
               </p>
@@ -99,10 +99,7 @@ export default function ForgotPassword() {
 
         <div className="mt-6 text-center  text-sm">
           As-tu deja un compte ?{" "}
-          <Link
-            to="/login"
-            className="text-[var(--light-zinc)] hover:underline dark:text-[var(--dark-accent)]"
-          >
+          <Link to="/login" className="hover:text-accent hover:underline ">
             Login
           </Link>
         </div>

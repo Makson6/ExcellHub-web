@@ -35,7 +35,7 @@ export function ProfileMenu({ onLogout }) {
           <p className="text-center text-sm">{user?.email}</p>
           <div className="flex justify-center">
             <p
-              onClick={() => navigate("/dashboard/my-profile")}
+              onClick={() => navigate("/dashboard")}
               className="cursor-pointer my-1.5 hover:text-midnight dark:hover:text-accent hover:underline"
             >
               Dashboard

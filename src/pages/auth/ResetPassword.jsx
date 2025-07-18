@@ -55,8 +55,8 @@ export default function ResetPassword() {
     }
   };
   return (
-    <div className="dark:bg-[var(--dark-background)] min-h-screen flex items-center justify-center">
-      <div className="relative bg-[var(--light-primary)] dark:bg-[var(--dark-primary)] p-8 rounded-lg w-full max-w-md shadow-2xl shadow-gray-950">
+    <div className=" min-h-screen flex items-center justify-center">
+      <div className="relative dark:bg-dark-bg  md:mb-40 dark:text-light  p-8 rounded-lg w-full max-w-md shadow-2xl shadow-gray-950">
         <Link to="/">
           <span
             className="absolute cursor-pointer hover:font-semibold text-2xl right-4 top-2 text-white"
@@ -105,7 +105,7 @@ export default function ResetPassword() {
                 En cours d'envoi...
               </p>
             ) : (
-              <p className="flex items-center justify-center gap-2 bg-[var(--light-zinc)] hover:bg-[var(--light-hover-button)] hover:dark:bg-[var(--dark-hover-button)] dark:bg-[var(--dark-green)] rounded-md cursor-pointer w-full py-2 px-8">
+              <p className="flex items-center justify-center gap-2 dark:bg-secondary/40 hover:bg-[var(--light-hover-button)] hover:dark:bg-secondary/60 rounded-md cursor-pointer w-full py-2 px-8">
                 {" "}
                 Confirmer
               </p>

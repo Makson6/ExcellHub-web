@@ -1,14 +1,21 @@
 import React from "react";
 import {
   FaFacebook,
+  FaGoogle,
   FaInstagram,
   FaLinkedin,
   FaTiktok,
   FaWhatsapp,
 } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import {
+  MdAttachEmail,
+  MdEmail,
+  MdMarkEmailUnread,
+  MdMarkunreadMailbox,
+} from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Mail } from "lucide-react";
 
 export default function Footer() {
   const { t } = useTranslation("footer");
@@ -31,84 +38,45 @@ export default function Footer() {
 
       {/* Footer Base */}
       <footer className="bg-midnight text-white pt-10  pb-6 px-4 lg:px-12">
-        <div className="grid grid-cols-1 lg:place-items-start sm:grid-cols-2 lg:pl-4  w-full lg:grid-cols-3 gap-6 transition duration-300 ">
-          {/* Réseaux Sociaux */}
-          <div className="flex flex-col justify-start">
-            <h3 className="text-lg font-bold mb-4">{t("socialTitle")}</h3>
-            <div className="flex  flex-col  gap-2 text-[var(--color-text-light)]">
-              <a
-                href="#"
-                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
-              >
-                <FaTiktok /> Tiktok
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
-              >
-                <FaFacebook /> Facebook
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
-              >
-                <FaInstagram /> Instagram
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
-              >
-                <FaWhatsapp /> Whatsapp
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
-              >
-                <FaLinkedin /> LinkedIn
-              </a>
-            </div>
-          </div>
-
-          {/* Produits */}
-          {/* <div>
-            <h3 className="text-lg font-bold mb-4">Product</h3>
+        {/* Footer  Details */}
+        <div className="grid grid-cols-1 lg:place-items-center sm:grid-cols-2 lg:pl-4    w-full lg:grid-cols-3 gap-6 transition duration-300 ">
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className=" flex flex-col gap-1 text-[var(--color-text-light)]">
+              <a href="" className="space-y-1 hover:text-[var(--color-accent)]">
+                <li>Home</li>
+              </a>{" "}
               <Link
-                to="/#contact"
+                to="/dashboard/profile"
                 className="space-y-1 hover:text-[var(--color-accent)]"
               >
-                <li>Video Lessons</li>
+                <li>Profile</li>
               </Link>{" "}
               <Link
-                to="/#contact"
+                to="/dashbaord"
                 className="space-y-1 hover:text-[var(--color-accent)]"
               >
-                <li>Ressources </li>
+                <li>Mon Espace</li>
               </Link>{" "}
               <Link
-                to="/#contact"
+                to="/courses"
                 className="space-y-1 hover:text-[var(--color-accent)]"
               >
-                <li>Quizzes</li>
+                <li>All Courses</li>
               </Link>{" "}
             </ul>
-          </div> */}
+          </div>
 
           {/* Support */}
           <div>
             <h3 className="text-lg font-bold mb-4">Support</h3>
             <ul className=" flex flex-col gap-1 text-[var(--color-text-light)]">
               <Link
-                to="/#contact"
+                to="/#faq"
                 className="space-y-1 hover:text-[var(--color-accent)]"
               >
-                <li>Contact Us</li>
-              </Link>{" "}
-              <Link
-                to="/contact"
-                className="space-y-1 hover:text-[var(--color-accent)]"
-              >
-                <li>Feedback</li>
+                <li>FAQs</li>
               </Link>{" "}
               <Link
                 to="/#about"
@@ -117,26 +85,89 @@ export default function Footer() {
                 <li>About</li>
               </Link>{" "}
               <Link
-                to="/#faq"
+                to="/contact"
                 className="space-y-1 hover:text-[var(--color-accent)]"
               >
-                <li>FAQs</li>
+                <li>Feedback</li>
+              </Link>{" "}
+              <Link
+                to="/#contact"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
+                <li>Contact Us</li>
               </Link>{" "}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Connect With Us*/}
           <div>
-            <h3 className="text-lg font-bold mb-4">Contact</h3>
-            <p className="flex items-center gap-2 hover:text-accent text-[var(--color-text-light)]">
-              <MdEmail />
-              <a href="mailto:excellhub@gmail.com">excellishub@gmail.com</a>
-            </p>
+            <h3 className="text-lg font-bold mb-4">{t("socialTitle")}</h3>
+
+            {/* <h3 className="text-lg font-bold mb-4">Connect With Us</h3> */}
+            <div className="flex  flex-row md:flex-col  gap-2 text-[var(--color-text-light)]">
+              <a
+                href="mailto:excellhub@gmail.com"
+                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
+              >
+                <MdEmail /> <span id="LinksTxt">Gmail</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
+              >
+                <FaTiktok /> <span id="LinksTxt">Tiktok</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
+              >
+                <FaFacebook /> <span id="LinksTxt">Facebook</span>
+              </a>
+
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
+              >
+                <FaWhatsapp /> <span id="LinksTxt">Whatsapp</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-[var(--color-accent)]"
+              >
+                <FaLinkedin /> <span id="LinksTxt">LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
-
         {/* Bas de page */}
         <div className="border-t border-gray-700 mt-8 pt-4 flex flex-col lg:flex-row items-center justify-between text-sm text-gray-400">
+          <div className="hidden  lg:flex flex-row gap-10 text-xl">
+            <a
+              href="mailto:excellhub@gmail.com"
+              className="flex items-center gap-2 hover:scale-140 hover:text-[var(--color-accent)]"
+            >
+              <MdEmail />{" "}
+            </a>
+            <a
+              href="#"
+              className="flex items-center hover:scale-140 gap-2 hover:text-[var(--color-accent)]"
+            >
+              <FaTiktok />{" "}
+            </a>
+            <a
+              href="#"
+              className="flex items-center gap-2 hover:scale-140 hover:text-[var(--color-accent)]"
+            >
+              <FaFacebook />
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center hover:scale-140 gap-2 hover:text-[var(--color-accent)]"
+            >
+              <FaWhatsapp />
+            </a>
+          </div>
           <p>© ExcellHub 2025 | All Rights Reserved</p>
           <div className="flex gap-4 mt-2 lg:mt-0">
             <Link to="/privacy" className="hover:text-[var(--color-accent)]">

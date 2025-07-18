@@ -7,14 +7,8 @@ const NotFound = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      try {
-        navigate(-1);
-      } catch (error) {
-        console.log(error);
-
-        navigate("/");
-      }
-    }, 1000);
+      navigate(-1);
+    }, 15000);
   }, []);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 p-6">

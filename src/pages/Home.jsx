@@ -39,9 +39,7 @@ const Home = () => {
   return (
     <>
       <div className="min-h-screen flex justify-center w-full  text-text dark:text-white">
-        {/* <div className="min-h-screen flex items-center justify-center w-full py-12 bg-background text-text dark:bg-dark-bg dark:text-white"> */}
         <div className=" px-3 w-full">
-          {/* <div className="max-w-7xl  bg-accent w-full"> */}
           {/* HERO */}
           <section className="text-center py-8 px-4">
             <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg mb-4 text-[var(--color-primary)] dark:text-[var(--color-secondary)]">
@@ -60,7 +58,7 @@ const Home = () => {
                 {t("discoverCourses")}
               </Link>
               <Link
-                to="/login"
+                to="/register"
                 className="bg-[var(--color-secondary)] text-white hover:bg-cyan-600 rounded-lg px-6 py-3 font-semibold transition"
               >
                 {t("createAccount")}

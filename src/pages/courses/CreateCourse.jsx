@@ -66,94 +66,6 @@ const CreateCourse = () => {
     }
   };
 
-  // const onSubmit = async (data) => {
-  //   try {
-  //     setIsLoading(true);
-  //     setProgress(10);
-  //     setStatusMessage("📤 Téléversement des vidéos...");
-
-  //     const { title, description, categoryName, isFree, price, lessons } = data;
-
-  //     const lessonsWithMux = [];
-
-  //     for (let i = 0; i < lessons.length; i++) {
-  //       const lesson = lessons[i];
-  //       const videoFile = lesson.videoFile?.[0];
-
-  //       if (!videoFile) {
-  //         toast.error(`Fichier vidéo manquant pour la leçon "${lesson.title}"`);
-  //         return;
-  //       }
-
-  //       const { videoId, muxUploadId } = await uploadVideoToMux(videoFile);
-
-  //       const duration = videoDurations[i] || null;
-
-  //       lessonsWithMux.push({
-  //         title: lesson.title,
-  //         content: lesson.content,
-  //         videoId,
-  //         muxUploadId,
-  //         duration,
-  //         resourcesIndexes: Array.from(lesson.resources || []).map(
-  //           (_, idx) => idx
-  //         ),
-  //       });
-
-  //       setProgress(10 + ((i + 1) / lessons.length) * 40);
-  //     }
-
-  //     setStatusMessage("📦 Préparation des données...");
-
-  //     const formData = new FormData();
-  //     formData.append(
-  //       "data",
-  //       JSON.stringify({
-  //         title,
-  //         description,
-  //         categoryName,
-  //         isFree,
-  //         price: isFree ? null : parseFloat(price),
-  //         lessons: lessonsWithMux,
-  //       })
-  //     );
-
-  //     if (data.thumbnail?.[0]) {
-  //       formData.append("thumbnail", data.thumbnail[0]);
-  //     }
-
-  //     lessons.forEach((lesson) => {
-  //       if (lesson.resources?.length) {
-  //         Array.from(lesson.resources).forEach((file) =>
-  //           formData.append("resourcesFiles", file)
-  //         );
-  //       }
-  //     });
-
-  //     setProgress(80);
-  //     setStatusMessage("📡 Envoi à l'API...");
-
-  //     await api.post("/api/courses", formData, {
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //     });
-
-  //     setProgress(100);
-  //     setStatusMessage("✅ Cours créé avec succès !");
-  //     toast.success("✅ Cours créé avec succès !");
-  //     setIsLoading(false);
-  //     navigate("/teacher-dashboard");
-  //   } catch (error) {
-  //     console.error("❌ [AXIOS ERROR]", error);
-  //     toast.error(
-  //       error.response?.data?.message ||
-  //         error.message ||
-  //         "Une erreur est survenue lors de la création du cours"
-  //     );
-  //     setProgress(0);
-  //     setStatusMessage("Erreur lors de la création du cours.");
-  //     setIsLoading(false);
-  //   }
-  // };
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
@@ -250,7 +162,7 @@ const CreateCourse = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-10 bg-white rounded-lg shadow">
+    <div className="max-w-4xl mx-auto px-8 py-10 bg-white dark:bg-midnight dark:text-light rounded-lg shadow">
       <h1 className="text-3xl font-bold text-center mb-16">
         Créer un nouveau cours
       </h1>
@@ -417,7 +329,7 @@ const CreateCourse = () => {
           <button
             type="button"
             onClick={() => append({ title: "", content: "" })}
-            className="mt-3 px-4 py-2 cursor-pointer bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="mt-3 px-4 py-2 cursor-pointer bg-blue-600/60 text-white rounded hover:bg-blue-700"
           >
             ➕ Ajouter une leçon
           </button>
@@ -443,12 +355,11 @@ const CreateCourse = () => {
             className={`w-full text-white px-6 py-3 rounded ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-green-600 cursor-pointer hover:bg-green-700"
+                : "bg-green-600/60 cursor-pointer hover:bg-green-700"
             }`}
           >
             {loading ? "⏳ Création en cours..." : "✅ Créer le cours"}
           </button>
-          <button type="submit">test</button>
         </div>
       </form>
     </div>

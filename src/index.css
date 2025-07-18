@@ -42,7 +42,14 @@
   scroll-margin-top: 280px;
   padding-top: 20px;
 }
-
+#LinksTxt {
+  display: none;
+}
+@media (min-width: 640px) {
+  #LinksTxt {
+    display: block;
+  }
+}
 /* button {
   @apply font-serf: Times;
 } */

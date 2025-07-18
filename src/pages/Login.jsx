@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useAuthStore } from "../store/useAuthStore";
 import ApiHistory from "../api/ApiHistory";
 import GoogleLoginButton from "../components/GoogleLoginButton";
-import { Loader2 } from "lucide-react"; // icône de chargement (optionnelle)
+import { Loader } from "lucide-react"; // icône de chargement (optionnelle)
 
 export default function Login() {
   const { vraiUser } = useAuthStore();
@@ -128,7 +128,7 @@ export default function Login() {
               }
             `}
           >
-            {Loading && <Loader2 className="animate-spin h-5 w-5 text-white" />}
+            {Loading && <Loader className="animate-spin h-5 w-5 text-white" />}
             <span className="dark:text-white">
               {Loading ? "Connexion en cours..." : "Se connecter"}
             </span>
