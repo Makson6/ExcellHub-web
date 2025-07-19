@@ -148,17 +148,14 @@ const AdminDashboard = () => {
 
   const statusAccount = theUser?.statusAccount;
 
-  const verifyMe = () => {
+  const verifyMe = async () => {
     const toastId = toast.loading("loading...");
     try {
-      api.post("/api/auth/verify-user-email");
-      if (toastId) {
-        setTimeout(() => {
-          toast.success("verification email was sent on your adress!", {
-            id: toastId,
-          });
-        }, 4000);
-      }
+      await api.post("/api/auth/verify-user-email");
+
+      toast.success("verification email was sent on your adress!", {
+        id: toastId,
+      });
     } catch (error) {
       console.log("eereur de verification du mail:", error);
       toast.error("email error", { id: toastId });

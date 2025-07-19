@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   MdLockOutline,
   MdOutlineNoAccounts,
@@ -7,14 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 export default function UserNotADMIN() {
   const navigate = useNavigate();
-  useEffect(() => {
-    const hendleBack = () => {
-      navigate(-1);
-    };
-    setTimeout(() => {
-      hendleBack();
-    }, 8000);
-  });
+
   return (
     <div className=" flex items-center justify-center text-center">
       <div className="max-w-xl mt-35 bg-white dark:bg-dark-bg/70 rounded-lg shadow-lg p-10">
