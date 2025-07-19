@@ -14,6 +14,7 @@ import StudentDashboard from "../pages/dashboard/Student";
 import About from "../pages/auth/About.jsx";
 import Contact from "../pages/Contacts";
 import AdminNewsletterEditor from "../pages/courses/AdminNewsletter.jsx";
+import AdminActionsLogs from "../components/AdminActionsLogs.jsx";
 import TeacherDashboard from "../pages/dashboard/Teacher";
 import CreateQuiz from "../pages/courses/CreateQuiz";
 import PaymentSection from "../components/payments/PaymentSection.jsx";
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/newsletter",
         element: <AdminNewsletterEditor />,
+      },
+      {
+        path: "/admin/adminlogs",
+        element: <AdminActionsLogs />,
       },
       //teacher
       {

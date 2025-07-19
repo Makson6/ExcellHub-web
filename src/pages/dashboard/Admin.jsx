@@ -240,6 +240,12 @@ const AdminDashboard = () => {
           >
             📬 Gerer les news letter
           </Link>
+          <Link
+            to={"/admin/adminlogs"}
+            className="bg-pink-900 hover:bg-black hover:scale-105 text-white px-3 py-1 rounded "
+          >
+            📬 Historique admin
+          </Link>
           <button
             onClick={() => setShowAddCourseModal(true)}
             className="bg-green-600 text-white px-3 hover:scale-105 cursor-pointer py-1 rounded hover:bg-green-700"
