@@ -83,7 +83,7 @@ const About = () => {
             itaque quidem nemo?
           </p>
           {/* Links */}
-          <div className="flex flex-wrap justify-center py-4 pt-9 md:flex-row  gap-2">
+          <div className="flex flex-wrap justify-center py-4 pt-9 md:flex-row  gap-8">
             {/* <div className="flex m-6 flex-col md:flex-row  gap-2 text-[var(--color-text-light)]"> */}
             <a
               target="_blank"

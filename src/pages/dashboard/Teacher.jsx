@@ -6,6 +6,8 @@ import api from "../../api/Axios";
 import UserNotTEACHER from "../../components/security/NotTEACHER";
 import UserNotConnected from "../../components/security/UserNotConnected";
 import { useAuthStore } from "../../store/useAuthStore";
+import DeleteCourseModal from "../../components/modals/DeleteCourseModal";
+
 import { Loader } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -17,6 +19,8 @@ const TeacherDashboard = () => {
   const [errorDelete, setErrorDelete] = useState(null);
   const [loading, setLoading] = useState(true);
   const [Role, setRole] = useState(null);
+  const [selectedCourseToDelete, setSelectedCourseToDelete] = useState(null);
+
   const { user } = useAuthStore();
 
   const filteredCourses = teacherCourses.filter((course) => {
@@ -272,6 +276,13 @@ const TeacherDashboard = () => {
                         Modifier
                       </Link>
                       <button
+                        onClick={() => setSelectedCourseToDelete(course.id)}
+                        className="text-red-600 hover:underline"
+                      >
+                        Supprimer
+                      </button>
+
+                      {/* <button
                         disabled={loadingDelete === course.id}
                         onClick={() => handleDeleteCourse(course.id)}
                         className="text-red-600 hover:underline disabled:opacity-50"
@@ -279,7 +290,7 @@ const TeacherDashboard = () => {
                         {loadingDelete === course.id
                           ? "Suppression..."
                           : "Supprimer"}
-                      </button>
+                      </button> */}
                     </div>
                     {errorDelete && loadingDelete === course.id && (
                       <p className="text-red-500 mt-2">{errorDelete}</p>
@@ -295,6 +306,13 @@ const TeacherDashboard = () => {
           </div>
         </div>
       </div>
+      {selectedCourseToDelete && (
+        <DeleteCourseModal
+          courseId={selectedCourseToDelete}
+          onClose={() => setSelectedCourseToDelete(null)}
+          onSuccess={fetchMyCourses}
+        />
+      )}
     </div>
   );
 };
