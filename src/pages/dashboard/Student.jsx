@@ -44,6 +44,11 @@ const StudentDashboard = () => {
     fetchCourses();
   }, []);
 
+  useEffect(() => {
+    if (user?.statusAccount === "VERIFIED") {
+      setStatusAccount(true);
+    }
+  }, [user]);
   const quizzes = [
     { title: "QCM Excel - Partie 1", link: "/quiz/excel-part1" },
     {
@@ -57,10 +62,6 @@ const StudentDashboard = () => {
   ];
 
   if (user === null) return <UserNotConnected />;
-
-  if (user?.statusAccount === "VERIFIED") {
-    setStatusAccount(true);
-  }
 
   const verifyMe = async () => {
     const toastId = toast.loading("loading...");
