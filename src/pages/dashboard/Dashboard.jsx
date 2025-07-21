@@ -4,6 +4,7 @@ import StudentDashboard from "./Student";
 import AdminDashboard from "./Admin";
 import TeacherDashboard from "./Teacher";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Loader } from "lucide-react";
 
 export default function Dashboard() {
   const { user, vraiUser } = useAuthStore();
@@ -25,8 +26,13 @@ export default function Dashboard() {
       }, 10000);
     }
   }, [loading]);
-  if (loading) return <p>Chargement...</p>;
 
+  if (loading)
+    return (
+      <div className="flex h-screen justify-center items-center">
+        <Loader size={55} className="animate-spin mb-20 dark:text-light" />
+      </div>
+    );
   if (!user) {
     navigate("/login", { state: dashboard });
   }
