@@ -28,7 +28,7 @@ const ApiHistory = {
   register: createEndpoint({ url: "/api/auth/register", method: "post" }),
   login: createEndpoint({ url: "/api/auth/login", method: "post" }),
   logout: createEndpoint({ url: "/api/auth/logout", method: "post" }),
-  home: createEndpoint({ url: "/api/courses/testeFeatcher", method: "get" }),
+  home: createEndpoint({ url: "/api/courses/featcher", method: "get" }),
 };
 
 export default ApiHistory;
