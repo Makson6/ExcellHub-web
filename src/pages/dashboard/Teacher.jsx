@@ -161,27 +161,49 @@ const TeacherDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
-          {[
-            { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
-            { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
-            {
-              to: "/dashboard/admin",
-              label: "     👤 Mon compte Aministrateur",
-            },
-          ].map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-600/20  text-center text-white overflow-hidden  p-1 w-full rounded cursor-not-allowed"
-                  : "bg-orange-600 text-white text-center w-full transition duration-300 p-1 cursor-pointer  md:hover:scale-105 rounded hover:bg-green-700"
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <div>
+          {user.role !== "STUDENT" && (
+            <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
+              {[
+                ...(user.role === "TEACHER" || user.role === "ADMIN"
+                  ? [
+                      {
+                        to: "/dashboard/student",
+                        label: "👨🏻‍🎓 Mon compte Élève",
+                      },
+                    ]
+                  : []),
+                ...(user.role === "TEACHER" || user.role === "ADMIN"
+                  ? [
+                      {
+                        to: "/dashboard/teacher",
+                        label: "👨🏿‍🏫 Mon compte Professeur",
+                      },
+                    ]
+                  : []),
+                ...(user.role === "ADMIN"
+                  ? [
+                      {
+                        to: "/dashboard/admin",
+                        label: "👤 Mon compte Administrateur",
+                      },
+                    ]
+                  : []),
+              ].map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-600/20 text-center text-white overflow-hidden p-1 w-full rounded cursor-not-allowed"
+                      : "bg-orange-600 text-white text-center w-full transition duration-300 p-1 cursor-pointer md:hover:scale-105 rounded hover:bg-green-700"
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+          )}
         </div>
         <div className=" flex items-center justify-center">
           <span

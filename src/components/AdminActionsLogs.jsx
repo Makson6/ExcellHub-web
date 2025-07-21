@@ -10,6 +10,7 @@ export default function AdminLogs() {
       .then((res) => setLogs(res.data))
       .catch((err) => console.error(err));
   }, []);
+  console.log(logs);
 
   return (
     <div className="p-4">
@@ -26,21 +27,22 @@ export default function AdminLogs() {
             </tr>
           </thead>
           <tbody>
-            {logs.map((log) => (
-              <tr key={log.id} className="border-t">
-                <td className="p-2">
-                  {new Date(log.timestamp).toLocaleString()}
-                </td>
-                <td className="p-2">
-                  {log.admin.name} {log.admin.lastName}
-                </td>
-                <td className="p-2">{log.action}</td>
-                <td className="p-2">
-                  {log.targetType} - {log.targetId}
-                </td>
-                <td className="p-2">{log.description}</td>
-              </tr>
-            ))}
+            {/* {Array.isArray(logs) &&
+              logs.map((log) => (
+                <tr key={log.id} className="border-t">
+                  <td className="p-2">
+                    {new Date(log.timestamp).toLocaleString()}
+                  </td>
+                  <td className="p-2">
+                    {log.admin?.name} {log.admin?.lastName}
+                  </td>
+                  <td className="p-2">{log.action}</td>
+                  <td className="p-2">
+                    {log.targetType} - {log.targetId}
+                  </td>
+                  <td className="p-2">{log.description}</td>
+                </tr>
+              ))} */}
           </tbody>
         </table>
       </div>

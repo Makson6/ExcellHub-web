@@ -5,10 +5,12 @@ import { toast } from "react-hot-toast";
 const CreateAdminModal = ({ onClose }) => {
   const [adminName, setAdminName] = useState("");
   const [adminEmail, setAdminEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleCreate = async () => {
     try {
       const token = localStorage.getItem("token");
+      setLoading(true);
       await api.post(
         "/api/admin/admin",
         { name: adminName, email: adminEmail },
@@ -22,6 +24,8 @@ const CreateAdminModal = ({ onClose }) => {
       console.error("Erreur création administrateur:", err);
 
       toast.error(err.response.data.message || "Erreur lors de la création");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,9 +56,10 @@ const CreateAdminModal = ({ onClose }) => {
           </button>
           <button
             onClick={handleCreate}
-            className="bg-blue-600 text-white rounded p-2"
+            disabled={loading}
+            className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white rounded p-2"
           >
-            Créer
+            {loading ? "Création..." : "Créer"}
           </button>
         </div>
       </div>

@@ -5,9 +5,11 @@ import { toast } from "react-hot-toast";
 const CreateTeacherModal = ({ onClose }) => {
   const [teacherName, setTeacherName] = useState("");
   const [teacherEmail, setTeacherEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleCreate = async () => {
     try {
+      setLoading(true);
       const token = localStorage.getItem("token");
       await api.post(
         "/api/admin/teachers",
@@ -22,6 +24,8 @@ const CreateTeacherModal = ({ onClose }) => {
       console.error("Erreur création formateur:", err);
 
       toast.error(err.response.data.message || "Erreur lors de la création");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,10 +53,11 @@ const CreateTeacherModal = ({ onClose }) => {
             Annuler
           </button>
           <button
+            disabled={loading}
             onClick={handleCreate}
-            className="bg-blue-600 text-white rounded p-2"
+            className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white rounded p-2"
           >
-            Créer
+            {loading ? "Création..." : "Créer"}
           </button>
         </div>
       </div>

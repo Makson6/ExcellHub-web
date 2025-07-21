@@ -11,16 +11,12 @@ export function MobileMenu({ onClose, isAuthenticated, onLogout }) {
     { path: "/", label: t("home") },
     { path: "/courses", label: t("allCourses") },
     { path: "/dashboard", label: t("dashboard") },
-    // { path: "/dashboard", label: t("profile") },
-    // { path: "/admin-dashboard", label: t("admin") },
-    // { path: "/teacher-dashboard", label: t("teacher") },
-    // { path: "/student-dashboard", label: t("student") },
     { path: "/about", label: t("about") },
     { path: "/contact", label: "Contacts" },
   ];
 
   return (
-    <nav className="sm:hidden  space-y-8 absolute text-right right-0 top-16 bg-secondary dark:bg-dark-bg p-6 w-2/3 rounded shadow-lg text-black dark:text-white">
+    <nav className="md:hidden  space-y-8 absolute text-right right-0 top-16 bg-secondary dark:bg-dark-bg p-6 w-2/3 rounded shadow-lg text-black dark:text-white">
       <div className="flex mr-6 flex-col space-y-1">
         {links.map((link) => (
           <NavLink

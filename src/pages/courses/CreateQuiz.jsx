@@ -45,28 +45,45 @@ const CreateQuiz = () => {
 
   // Charger les cours
   useEffect(() => {
-    api
-      .get("/api/courses")
-      .then((res) => setCourses(res.data || []))
-      .catch((error) =>
-        toast.error(error.message || "Impossible de charger les cours.")
-      );
+    const fetchCourses = async () => {
+      try {
+        const res = await api.get("/api/courses");
+        setCourses(Array.isArray(res.data) ? res.data : []);
+      } catch (error) {
+        const errorMessage =
+          error?.response?.data?.message || "Impossible de charger les cours.";
+        toast.error(errorMessage);
+      }
+    };
+
+    fetchCourses();
   }, []);
 
-  // Charger les leçons du cours sélectionné
+  // // Charger les leçons du cours sélectionné
   useEffect(() => {
-    if (!selectedCourseId) {
-      setLessons([]);
-      return;
-    }
-    setLoadingLessons(true);
-    api
-      .get(`/api/courses/${selectedCourseId}/lessons`)
-      .then((res) => setLessons(Array.isArray(res.data) ? res.data : []))
-      .catch((err) =>
-        toast.error(err.message || "Erreur lors du chargement des leçons.")
-      )
-      .finally(() => setLoadingLessons(false));
+    const fetchLessons = async () => {
+      if (!selectedCourseId) {
+        setLessons([]);
+        return;
+      }
+
+      setLoadingLessons(true);
+
+      try {
+        const res = await api.get(`/api/courses/${selectedCourseId}/lessons`);
+        const data = res.data;
+
+        setLessons(Array.isArray(data) ? data : []);
+      } catch (err) {
+        const errorMessage =
+          err?.response?.data?.message || "Erreur de récupération des leçons";
+        toast.error(errorMessage);
+      } finally {
+        setLoadingLessons(false);
+      }
+    };
+
+    fetchLessons();
   }, [selectedCourseId]);
 
   const onSubmit = async (data) => {
@@ -95,7 +112,6 @@ const CreateQuiz = () => {
       lessonId: selectedLessonId,
       questions: formattedQuestions,
     };
-    console.log(payload);
 
     try {
       await api.post("/api/quizzes", payload);
@@ -294,7 +310,7 @@ const CreateQuiz = () => {
         <div className="flex flex-wrap gap-4 mt-4">
           <button
             type="submit"
-            // disabled={!selectedCourseId}
+            disabled={!selectedCourseId}
             className={`px-6 py-2 rounded text-white ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"

@@ -9,6 +9,7 @@ import ApiHistory from "../api/ApiHistory";
 const Home = () => {
   const { t } = useTranslation("home");
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   useEffect(() => {
     const hash = location.hash;
@@ -31,6 +32,8 @@ const Home = () => {
           error?.response?.data?.message ||
             "Erreur lors du chargement des cours"
         );
+      } finally {
+        setLoading(false);
       }
     };
     fetchCourses();
@@ -70,9 +73,13 @@ const Home = () => {
           <h2 className="text-3xl font-bold mt-10 text-center">
             {t("featuredCourses")}
           </h2>
-          {courses.length === 0 ? (
-            <div className="text-center   mt-10 text-[var(--color-text-light)]">
+          {loading ? (
+            <div className="text-center mt-10 text-[var(--color-text-light)]">
               {t("loadingCourses")}
+            </div>
+          ) : courses.length === 0 ? (
+            <div className="text-center mt-10 text-[var(--color-text-light)]">
+              Aucun cours à afficher pour le moment
             </div>
           ) : (
             <section className="py-16 max-w-7xl px-4">
@@ -107,7 +114,6 @@ const Home = () => {
           )}
         </div>
       </div>
-
       {/* À PROPOS */}
       <div
         id="about"
@@ -123,12 +129,7 @@ const Home = () => {
           </p>
         </section>
       </div>
-
       {/* CONTACT */}
-      {/* <div
-        id="contact"
-        className="h-2/3 w-full py-12  flex items-center justify-center "
-      > */}
       <section id="contact" className=" dark:text-white py-16 text-center px-4">
         <h2 className="text-3xl font-bold">{t("contactTitle")}</h2>
         <p className="my-6 max-w-2xl mx-auto text-lg text-[var(--color-text-light)] dark:text-gray-400">
@@ -139,7 +140,6 @@ const Home = () => {
         </p>
       </section>
       {/* </div> */}
-
       {/* FAQ + FOOTER */}
       <span id="faq">
         <FaqSection />

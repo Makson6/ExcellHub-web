@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import ApiHistory from "../../api/ApiHistory";
 import { TextInput } from "../Inputs";
 import { useForm } from "react-hook-form";
 
 const DeleteUserModal = ({ onClose }) => {
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -14,9 +16,9 @@ const DeleteUserModal = ({ onClose }) => {
 
   const onSubmit = async (data) => {
     const { mail } = data;
-    console.log(mail);
-
     try {
+      setLoading(true);
+
       await ApiHistory.adminDel({ email: mail });
 
       toast.success("Utilisateur supprimé avec succès");
@@ -27,6 +29,8 @@ const DeleteUserModal = ({ onClose }) => {
       toast.error(
         err?.response?.data?.message || "Erreur lors de la suppression"
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,9 +69,10 @@ const DeleteUserModal = ({ onClose }) => {
             </button>
             <button
               type="submit"
+              disabled={loading}
               className="bg-red-600 cursor-pointer hover:bg-red-700 text-white rounded p-2"
             >
-              Supprimer
+              {loading ? "Suppression..." : "Confirmer"}
             </button>
           </div>
         </form>

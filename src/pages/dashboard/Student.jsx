@@ -8,8 +8,35 @@ import toast from "react-hot-toast";
 const StudentDashboard = () => {
   const navigate = useNavigate();
   const [enrollments, setEnrollments] = useState([]);
+  const [qui, setQui] = useState([]);
   const [statusAccount, setStatusAccount] = useState(false);
   const { user } = useAuthStore();
+  useEffect(() => {
+    const Q = async () => {
+      try {
+        // 1. Récupère les IDs des leçons terminées
+        const completedRes = await api.get("/api/lesson-progress/completed");
+        console.log(completedRes);
+
+        const completedLessonIds = completedRes.data.lessonIds;
+
+        // 2. Récupère tous les quizzes de l'utilisateur
+        const res = await api.get("/api/quizzes/my-quizzes");
+        const allQuizzes = res.data.data;
+
+        // 3. Filtrer les quizzes liés aux leçons terminées
+        const filteredQuizzes = allQuizzes.filter((quiz) =>
+          completedLessonIds.includes(quiz.lessonId)
+        );
+
+        setQui(filteredQuizzes);
+      } catch (error) {
+        console.error("Erreur lors du chargement des quizzes terminés", error);
+      }
+    };
+
+    Q();
+  }, []);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -43,26 +70,17 @@ const StudentDashboard = () => {
     };
     fetchCourses();
   }, []);
-
   useEffect(() => {
     if (user?.statusAccount === "VERIFIED") {
       setStatusAccount(true);
     }
   }, [user]);
-  const quizzes = [
-    { title: "QCM Excel - Partie 1", link: "/quiz/excel-part1" },
-    {
-      title: "QCM Gestion de Projet - Introduction",
-      link: "/quiz/gp-intro",
-      // link: "/quizzes/gp-intro",
-    },
-  ];
+
   const certificates = [
     { title: "Certificat Excel Débutant", date: "12 juin 2025", link: "#" },
   ];
 
   if (user === null) return <UserNotConnected />;
-
   const verifyMe = async () => {
     const toastId = toast.loading("loading...");
     try {
@@ -85,7 +103,11 @@ const StudentDashboard = () => {
           <div className="flex flex-col sm:flex-row items-center gap-6 justify-between p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
             <div
               className="flex flex-col  w-full  md:flex-row items-center gap-4 cursor-pointer"
-              onClick={() => navigate("/dashboard/profile")}
+              onClick={() => {
+                user.statusAccount === "VERIFIED"
+                  ? navigate("/dashboard/profile")
+                  : "";
+              }}
             >
               {user?.avatar ? (
                 <img
@@ -105,35 +127,62 @@ const StudentDashboard = () => {
                 <p className="text-gray-500 text-center">{user?.email}</p>
               </div>
             </div>
-            <span
-              onClick={verifyMe}
-              className="text-red-600 animate-bounce cursor-pointer hover:scale-110 flex ml-9 "
-            >
-              {statusAccount ? <p>'</p> : <p>verify my account</p>}
-            </span>
-          </div>
-          <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
-            {[
-              { to: "/dashboard/student", label: "  👨🏻‍🎓 Mon compte Eleve" },
-              { to: "/dashboard/teacher", label: "  👨🏿‍🏫 Mon compte professeur" },
-              {
-                to: "/dashboard/admin",
-                label: "     👤 Mon compte Aministrateur",
-              },
-            ].map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-600/20  text-center text-white overflow-hidden  p-1 w-full rounded cursor-not-allowed"
-                    : "bg-orange-600 text-white text-center w-full transition duration-300 p-1 cursor-pointer  md:hover:scale-105 rounded hover:bg-green-700"
-                }
+            {!statusAccount && (
+              <button
+                onClick={verifyMe}
+                className="text-red-600 animate-bounce cursor-pointer hover:scale-110 flex ml-9"
               >
-                {link.label}
-              </NavLink>
-            ))}
+                Vérifier mon compte
+              </button>
+            )}
           </div>
+
+          {/* Links Vers autres compte */}
+          <div>
+            {user.role !== "STUDENT" && (
+              <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
+                {[
+                  ...(user.role === "TEACHER" || user.role === "ADMIN"
+                    ? [
+                        {
+                          to: "/dashboard/student",
+                          label: "👨🏻‍🎓 Mon compte Élève",
+                        },
+                      ]
+                    : []),
+                  ...(user.role === "TEACHER" || user.role === "ADMIN"
+                    ? [
+                        {
+                          to: "/dashboard/teacher",
+                          label: "👨🏿‍🏫 Mon compte Professeur",
+                        },
+                      ]
+                    : []),
+                  ...(user.role === "ADMIN"
+                    ? [
+                        {
+                          to: "/dashboard/admin",
+                          label: "👤 Mon compte Administrateur",
+                        },
+                      ]
+                    : []),
+                ].map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-gray-600/20 text-center text-white overflow-hidden p-1 w-full rounded cursor-not-allowed"
+                        : "bg-orange-600 text-white text-center w-full transition duration-300 p-1 cursor-pointer md:hover:scale-105 rounded hover:bg-green-700"
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+
           <p className="mt-8 text-gray-600 dark:text-gray-300">
             Bienvenue ! Consultez vos cours en cours, vos progrès ainsi que vos
             certificats obtenus.
@@ -186,15 +235,15 @@ const StudentDashboard = () => {
             {""}Quiz à passer
           </h2>
           <div className="mt-4 space-y-3">
-            {quizzes.length < 0 ? (
-              quizzes.map((quiz, index) => (
+            {qui.length > 0 ? (
+              qui.map((quiz, index) => (
                 <div
                   key={index}
                   className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow hover:shadow-lg"
                 >
                   <h3 className="font-bold">{quiz.title}</h3>
                   <Link
-                    to={quiz.link}
+                    to={`/lesson/${quiz.lessonId}/quiz`}
                     className="mt-1 inline-block text-blue-600 hover:underline"
                   >
                     Faire le quiz →

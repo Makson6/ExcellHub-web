@@ -125,11 +125,19 @@ const Navbar = () => {
         {/* Mobile Burger Menu */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden cursor-pointer hover:text-accent text-white text-2xl"
+          className="md:hidden cursor-pointer hover:text-primary/40 text-white text-2xl"
           aria-label="Menu"
           aria-expanded={menuOpen}
         >
-          {menuOpen ? "✕" : "☰"}
+          {menuOpen ? (
+            <div className="transition-transform duration-600 rotate-90 transform ">
+              ☰
+            </div>
+          ) : (
+            <div className="transition-transform duration-600  transform hover:rotate-45 ">
+              ☰
+            </div>
+          )}
         </button>
 
         {/* Mobile Menu Modal */}

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function UserNotTEACHER() {
   return (
     <div className="mx-auto mt-32  flex items-center justify-center text-center">
-      <div className="max-w-xl m-6 bg-white dark:bg-[var(--dark-primary)] rounded-lg shadow-lg p-10">
+      <div className="max-w-xl m-6 bg-white dark:bg-dark-bg/70 rounded-lg shadow-lg p-10">
         <div className="text-6xl text-[var(--light-accent)] mb-4 flex justify-center">
           <MdLockOutline />
         </div>

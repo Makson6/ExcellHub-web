@@ -110,6 +110,7 @@ const LessonQuizPage = () => {
   };
 
   const handleSubmit = async () => {
+    const toastId = toast.loading("soumission en cours...");
     try {
       if (!quiz || !quiz.questions) return;
 
@@ -125,10 +126,19 @@ const LessonQuizPage = () => {
       );
       setScore(calculatedScore);
 
-      // TODO: si tu veux enregistrer le résultat dans la base, appelle ici une route API
+      const quizId = quiz.id;
+
+      await api.post("/api/quiz-results", {
+        quizId: quizId,
+        score: calculatedScore,
+      });
+      await api.post(`/lesson-progress/${lessonId}/complete`);
+      toast.success("lesson marque coumme termine", { id: toastId });
     } catch (err) {
       console.error("Erreur de soumission du quiz :", err);
       toast.error("Une erreur est survenue lors de la soumission.");
+    } finally {
+      toast.remove("");
     }
   };
 
@@ -228,7 +238,7 @@ const LessonQuizPage = () => {
           <div className="text-center mt-8">
             <button
               onClick={handleSubmit}
-              disabled={quiz.questions.some((q) => !answers[q.id])}
+              // disabled={quiz.questions.some((q) => !answers[q.id])}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow disabled:opacity-50"
             >
               Soumettre mes réponses
@@ -241,7 +251,7 @@ const LessonQuizPage = () => {
               <span className="text-blue-600">{score}/10</span>
             </p>
             <Link
-              to="/quiz"
+              to="/dashboard/student"
               className="inline-block mt-4 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900"
             >
               Retour aux quiz
