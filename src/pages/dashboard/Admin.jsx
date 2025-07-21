@@ -24,9 +24,9 @@ import UserNotConnected from "../../components/security/UserNotConnected";
 import DeleteUserModal from "../../components/modals/DeleteUserModal";
 import { Loader } from "lucide-react";
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ user }) => {
   const navigate = useNavigate();
-  const [theUser, setTheUser] = useState(null);
+  // const [theUser, setTheUser] = useState(null);
   const [stats, setStats] = useState({
     totalStudents: 0,
     totalTeachers: 0,
@@ -100,8 +100,8 @@ const AdminDashboard = () => {
       </div>
     );
 
-  if (theUser === null) return <UserNotADMIN />;
-  const Role = theUser.role;
+  if (user === null) return <UserNotADMIN />;
+  const Role = user.role;
   if (Role === undefined) return <UserNotConnected />;
 
   const filteredTeachers = teachersData.filter((t) =>
@@ -146,7 +146,7 @@ const AdminDashboard = () => {
     (c) => c.status === "IN_CHECKING"
   );
 
-  const statusAccount = theUser?.statusAccount;
+  const statusAccount = user?.statusAccount;
 
   const verifyMe = async () => {
     const toastId = toast.loading("loading...");
@@ -172,10 +172,10 @@ const AdminDashboard = () => {
             className="flex flex-col  w-full  md:flex-row items-center gap-4 cursor-pointer"
             onClick={() => navigate("/dashboard/profile")}
           >
-            {theUser?.avatar ? (
+            {user?.avatar ? (
               <img
                 className="w-20 h-20 rounded-full object-cover ring-2 ring-blue-500"
-                src={theUser?.avatar}
+                src={user?.avatar}
                 alt="Avatar"
               />
             ) : (
@@ -186,9 +186,9 @@ const AdminDashboard = () => {
             <div>
               <h1 className="text-3xl font-bold text-center">
                 {" "}
-                {theUser.fullName}
+                {user.fullName}
               </h1>
-              <p className="text-gray-500 text-center">{theUser?.email}</p>
+              <p className="text-gray-500 text-center">{user?.email}</p>
             </div>
           </div>
         </div>
