@@ -163,7 +163,19 @@ const AdminDashboard = ({ user }) => {
       toast.remove("");
     }
   };
-
+  //traquer les cours orphelins
+  const takeID = async () => {
+    const toastId = toast.loading("loading...");
+    try {
+      const res = await api.put("/api/admin/takeID");
+      toast.success(res.data?.message || "chek reusi", { id: toastId });
+    } catch (error) {
+      toast.error(
+        error.data.message || "Erreur de recuperation cours sans teacher ID",
+        { id: toastId }
+      );
+    }
+  };
   return (
     <div className="min-h-screen py-10 px-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-6xl mx-auto space-y-10">
@@ -282,7 +294,9 @@ const AdminDashboard = ({ user }) => {
         </motion.section>
 
         <section>
-          <h2 className="text-2xl font-semibold">📈 Inscriptions</h2>
+          <h2 onClick={() => takeID()} className="text-2xl font-semibold">
+            📈 Inscriptions
+          </h2>
           <div className="bg-white dark:bg-gray-800 rounded p-4 mt-3 shadow">
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={registrationsData}>
