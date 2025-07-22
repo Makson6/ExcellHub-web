@@ -64,7 +64,7 @@ export default function AdminNewsletterEditor() {
 
   return (
     <div className="flex justify-center px-4 py-8">
-      <div className="w-full max-w-4xl shadow-lg rounded-xl p-6 space-y-6">
+      <div className="w-full bg-white/70 dark:bg-dark-bg/50 max-w-4xl shadow-lg rounded-xl p-6 space-y-6">
         <h2 className="text-2xl font-bold text-center">
           📧 Envoyer une Newsletter
         </h2>
@@ -75,18 +75,18 @@ export default function AdminNewsletterEditor() {
           placeholder="Sujet de la newsletter"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
-          className="w-full p-3 rounded border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition dark:bg-background dark:text-white"
+          className="w-full p-3 rounded border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition dark:text-white"
         />
 
         {/* Editeur WYSIWYG */}
         <LexicalComposer initialConfig={editorConfig}>
-          <div className="border border-gray-300 dark:border-gray-700 rounded p-2 min-h-[200px]  text-black dark:text-white shadow-inner">
+          <div className="border border-gray-300 dark:border-gray-700 rounded p-2 min-h-[200px]   dark:focus:ring-primary text-black dark:text-white shadow-inner">
             <RichTextPlugin
               contentEditable={
-                <ContentEditable className="min-h-[200px] outline-none p-2" />
+                <ContentEditable className="min-h-[200px]  outline-none p-2" />
               }
               placeholder={
-                <div className="p-2 text-gray-400">
+                <div className="p-2 text-gray-400 ">
                   Contenu de votre newsletter...
                 </div>
               }
@@ -112,7 +112,7 @@ export default function AdminNewsletterEditor() {
             type="file"
             accept="image/*,.pdf,.doc,.docx"
             onChange={(e) => setAttachment(e.target.files[0])}
-            className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-md file:bg-primary file:text-white file:cursor-pointer hover:file:bg-opacity-90 transition"
+            className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-md file:bg-primary dark:bg-primary/10 cursor-pointer text-center file:text-white file:cursor-pointer hover:file:bg-opacity-90 transition"
           />
           {attachment && (
             <p className="mt-2 text-sm text-green-600 dark:text-green-400">
@@ -123,10 +123,10 @@ export default function AdminNewsletterEditor() {
 
         {/* Destinataires */}
         <div>
-          <h3 className="text-lg font-semibold mb-2">
+          <h3 className="text-lg  font-semibold mb-2">
             📬 Destinataires ({subscribers.length})
           </h3>
-          <div className="max-h-40 overflow-auto border border-gray-200 dark:border-gray-700 rounded p-3 bg-white dark:bg-background text-sm space-y-1">
+          <div className="max-h-40 overflow-auto border border-gray-200 dark:border-gray-700 rounded p-3 dark:bg-dark-bg/50 text-sm space-y-1">
             {subscribers.map((s) => (
               <div key={s.id} className="text-gray-600 dark:text-gray-300">
                 {s.email}
@@ -139,7 +139,7 @@ export default function AdminNewsletterEditor() {
         <button
           onClick={handleSendNewsletter}
           disabled={loading}
-          className="w-full md:w-auto mt-4 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 disabled:opacity-50 transition"
+          className="w-full md:w-auto mt-4 px-6 py-3 bg-primary dark:bg-primary/80 cursor-pointer hover:bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 disabled:opacity-50 transition"
         >
           {loading ? "📤 Envoi en cours..." : "🚀 Envoyer la newsletter"}
         </button>

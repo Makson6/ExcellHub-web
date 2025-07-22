@@ -15,6 +15,8 @@ const DeleteUserModal = ({ onClose }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
+
     const { mail } = data;
     try {
       setLoading(true);
@@ -38,10 +40,24 @@ const DeleteUserModal = ({ onClose }) => {
     <div className="fixed bg-sky-200/50 h-3/3 inset-0 flex  justify-center items-center  ">
       <div className="absolute  bg-white dark:bg-midnight my-9 rounded-md p-6 space-y-4 w-full max-w-md">
         <h2 className="text-xl text-center font-bold">
-          🗑️ Email de l'utilisateur
+          🗑️ supprimer un utilisateur
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <textarea
+            {...register("reason", {
+              required: "La raison de la suppression est requise",
+              minLength: {
+                value: 5,
+                message: "La raison doit contenir au moins 5 caractères",
+              },
+            })}
+            placeholder="Raison de la suppression"
+            className="w-full h-28 border p-2 rounded resize-none"
+          />
+          {errors.reason && (
+            <p className="text-red-500 text-sm">{errors?.reason?.message}</p>
+          )}
           <TextInput
             register={register}
             type="email"

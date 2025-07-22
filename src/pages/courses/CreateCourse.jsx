@@ -147,7 +147,7 @@ const CreateCourse = () => {
       setStatusMessage("✅ Cours créé avec succès !");
       toast.success("✅ Cours créé avec succès !");
       setIsLoading(false);
-      navigate("/teacher-dashboard");
+      navigate("/dashboard/teacher");
     } catch (error) {
       console.error("❌ [AXIOS ERROR]", error);
       toast.error(

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, provider } from "../firebase";
+import { auth, provider } from "../config/config";
 import { signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
@@ -25,10 +25,13 @@ const GoogleLoginButton = () => {
   };
 
   const handleGoogleLogin = async () => {
-    setLoading(true);
+    console.log("Google result");
+    const result = await signInWithPopup(auth, provider);
+
     try {
-      const result = await signInWithPopup(auth, provider);
+      setLoading(true);
       const user = result.user;
+      console.log("google User", user);
 
       const res = await api.post("/api/auth/google", {
         email: user.email,

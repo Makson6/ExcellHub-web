@@ -6,7 +6,6 @@ import api from "../../api/Axios.js";
 import { toast } from "react-hot-toast";
 import { PhoneNumberInput } from "../../components/Inputs.jsx";
 import { CopyCheckIcon } from "lucide-react";
-import { useSyncExternalStore } from "react";
 
 const ProfilePage = () => {
   const user = useAuthStore((state) => state.user);
@@ -57,7 +56,6 @@ const ProfilePage = () => {
     }
   }, [avatarFile]);
 
-  console.log(useSyncExternalStore);
   const onSubmit = async (data) => {
     const { fullName, email, mobile } = data;
     const image = data.avatar?.[0];
@@ -129,14 +127,6 @@ const ProfilePage = () => {
               </button>
             )}
           </div>
-          {/* 
-          {avatarPreview && (
-            <img
-              src={avatarPreview}
-              alt="Aperçu Avatar"
-              className="w-24 h-24 rounded-full object-cover mb-3 border"
-            />
-          )} */}
           {avatarPreview && (
             <>
               <img

@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import api from "../api/Axios";
-import toast from "react-hot-toast";
 
 export const useAuthStore = create((set) => {
   let storedUser = null;
@@ -14,24 +13,44 @@ export const useAuthStore = create((set) => {
   }
 
   const isAuthenticated = !!storedUser;
-  if (storedUser === null) {
-    toast.error("User not conneted");
-    localStorage.removeItem("user");
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("cookieToken");
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("cookieToken");
-  }
 
   return {
     user: storedUser,
     isAuthenticated,
 
-    setUser: (user) => {
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        set({ user, isAuthenticated: true });
-      } else {
+    setUser: (nextUser) => {
+      //  Si nextUser est une fonction (comme prev => ({ ...prev, avatar: ... }))
+      if (typeof nextUser === "function") {
+        set((state) => {
+          const computedUser = nextUser(state.user);
+          if (
+            typeof computedUser !== "object" ||
+            Array.isArray(computedUser) ||
+            computedUser === null
+          ) {
+            console.warn("setUser: résultat invalide", computedUser);
+            localStorage.removeItem("user");
+            return { user: null, isAuthenticated: false };
+          }
+
+          localStorage.setItem("user", JSON.stringify(computedUser));
+          return { user: computedUser, isAuthenticated: true };
+        });
+      }
+
+      //  Si nextUser est un objet
+      else if (
+        typeof nextUser === "object" &&
+        !Array.isArray(nextUser) &&
+        nextUser !== null
+      ) {
+        localStorage.setItem("user", JSON.stringify(nextUser));
+        set({ user: nextUser, isAuthenticated: true });
+      }
+
+      // ❌ Sinon : invalide
+      else {
+        console.warn("setUser: valeur invalide", nextUser);
         localStorage.removeItem("user");
         set({ user: null, isAuthenticated: false });
       }
@@ -64,54 +83,3 @@ export const useAuthStore = create((set) => {
     },
   };
 });
-// import { create } from "zustand";
-// import { persist } from "zustand/middleware";
-// import api from "../api/Axios";
-// import toast from "react-hot-toast";
-
-// export const useAuthStore = create(
-//   persist(
-//     (set, get) => ({
-//       user: null,
-//       isAuthenticated: false,
-
-//       setUser: (user) => {
-//         if (user) {
-//           set({ user, isAuthenticated: true });
-//         } else {
-//           set({ user: null, isAuthenticated: false });
-//         }
-//       },
-
-//       logout: () => {
-//         localStorage.removeItem("accessToken");
-//         sessionStorage.removeItem("accessToken");
-//         sessionStorage.removeItem("user");
-//         localStorage.removeItem("cookieToken");
-//         set({ user: null, isAuthenticated: false });
-//       },
-
-//       vraiUser: async () => {
-//         try {
-//           const { data } = await api.get("/api/auth/me");
-//           set({ user: data, isAuthenticated: true });
-//           return data;
-//         } catch (error) {
-//           console.error(
-//             "Erreur lors de la récupération de l'utilisateur :",
-//             error
-//           );
-//           set({ user: null, isAuthenticated: false });
-//           return null;
-//         }
-//       },
-//     }),
-//     {
-//       name: "auth", // Clé locale dans localStorage
-//       partialize: (state) => ({
-//         user: state.user,
-//         isAuthenticated: state.isAuthenticated,
-//       }),
-//     }
-//   )
-// );

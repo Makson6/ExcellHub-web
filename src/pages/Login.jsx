@@ -38,11 +38,10 @@ export default function Login() {
       };
 
       const res = await ApiHistory.login(credentials);
-      const { accessToken, cookieToken } = res.data || {};
+      const { accessToken } = res.data || {};
 
       if (accessToken) {
         localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("cookieToken", cookieToken);
         toast.success("Connexion réussie !");
         const fetchedUser = await vraiUser();
 
@@ -64,7 +63,6 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 min-h-screen">
-      {/* <div className="flex flex-col items-center justify-center px-4 min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 dark:from-[#1e1e2f] dark:to-dark-bg"> */}
       <div className="relative bg-white dark:bg-midnight w-full max-w-lg mb-30 p-8 rounded-sm shadow-xl shadow-gray-700/80 transition-all duration-500 ease-in-out">
         <Link
           to="/"
@@ -124,7 +122,6 @@ export default function Login() {
                 Loading
                   ? "bg-gray-400 cursor-not-allowed text-white"
                   : " bg-secondary/70  border   cursor-pointer dark:bg-secondary/70 hover:bg-secondary/90 text-black/40"
-                // : " bg-white  border   cursor-pointer dark:bg-secondary/70 hover:bg-secondary/80 text-black/40"
               }
             `}
           >

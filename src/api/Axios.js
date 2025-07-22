@@ -1,32 +1,44 @@
 import axios from "axios";
-import toast from "react-hot-toast";
+import { baseURL } from "../config/config.js";
 
+// Création de l'instance Axios
 const api = axios.create({
-  // baseURL: import.meta.env.VITE_BACKEND_URL || "http://192.168.186.163:3000",
-  baseURL: import.meta.env.VITE_BACKEND_URL || "http://localhost:3000",
-  withCredentials: true,
+  baseURL,
+  withCredentials: false, // On n'utilise pas les cookies
 });
-// console.log("VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL);
 
+// Intercepteur de requête : ajout du token JWT
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
-
-    if (!token) {
-      localStorage.removeItem("accessToken");
-      sessionStorage.removeItem("accessToken");
-      sessionStorage.clear();
-      // toast.error("User not connected");
-    }
-    // console.log(token?.valueOf);le status(403)
-    //trouver comment renvoyer un msg au user si token non valide ou expirer
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
   },
   (error) => Promise.reject(error)
+);
+
+// Intercepteur de réponse : gestion des erreurs globales
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const { status } = error.response;
+
+      if (status === 401) {
+        // Token invalide ou expiré
+        localStorage.removeItem("accessToken");
+        // Redirection vers la page de connexion
+        window.location.href = "/login";
+      }
+
+      // Gère d'autres statuts si besoin, ex :
+      // if (status === 403) { ... }
+    }
+
+    return Promise.reject(error);
+  }
 );
 
 export default api;

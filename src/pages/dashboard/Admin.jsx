@@ -59,7 +59,7 @@ const AdminDashboard = ({ user }) => {
     setLoading(true);
     const fetchAll = async () => {
       try {
-        const token = localStorage.getItem("accessToken");
+        const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         const [
@@ -100,7 +100,7 @@ const AdminDashboard = ({ user }) => {
       </div>
     );
 
-  if (theUser === null) return <UserNotADMIN />;
+  if (!theUser) return <UserNotADMIN />;
   const Role = theUser?.role;
   if (Role === undefined) return <UserNotConnected />;
 
@@ -163,6 +163,7 @@ const AdminDashboard = ({ user }) => {
       toast.remove("");
     }
   };
+
   return (
     <div className="min-h-screen py-10 px-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-6xl mx-auto space-y-10">
@@ -188,7 +189,7 @@ const AdminDashboard = ({ user }) => {
                 {" "}
                 {theUser?.fullName}
               </h1>
-              <p className="text-gray-500 text-center">{user?.email}</p>
+              <p className="text-gray-500 text-center">{theUser?.email}</p>
             </div>
           </div>
         </div>
@@ -241,17 +242,17 @@ const AdminDashboard = ({ user }) => {
             📬 Gerer les news letter
           </Link>
           <Link
-            to={"/admin/adminlogs"}
+            to={"/admin/logs"}
             className="bg-pink-900 hover:bg-black hover:scale-105 text-white px-3 py-1 rounded "
           >
             📬 Historique admin
           </Link>
-          <button
+          {/* <button
             onClick={() => setShowAddCourseModal(true)}
             className="bg-green-600 text-white px-3 hover:scale-105 cursor-pointer py-1 rounded hover:bg-green-700"
           >
             ➕ Ajouter un cours
-          </button>
+          </button> */}
         </div>
 
         <div className=" flex items-center justify-center">
@@ -308,17 +309,17 @@ const AdminDashboard = ({ user }) => {
               <select
                 value={sortTeacher}
                 onChange={(e) => setSortTeacher(e.target.value)}
-                className="p-2 rounded bg-gray-200 dark:bg-gray-700"
+                className="p-2 rounded cursor-pointer bg-gray-200 dark:bg-gray-700"
               >
                 <option value="name">Trier par nom</option>
                 <option value="courses">Trier par cours</option>
               </select>
-              <button
+              {/* <button
                 className="bg-gray-600 text-white rounded p-1 hover:bg-gray-700"
                 onClick={() => exportData(filteredTeachers, "formateurs.csv")}
               >
                 Exporter CSV
-              </button>
+              </button> */}
             </div>
           </div>
           <input
@@ -387,17 +388,17 @@ const AdminDashboard = ({ user }) => {
               <select
                 value={sortStudent}
                 onChange={(e) => setSortStudent(e.target.value)}
-                className="p-2 rounded bg-gray-200 dark:bg-gray-700"
+                className="p-2 rounded cursor-pointer bg-gray-200 dark:bg-gray-700"
               >
                 <option value="name">Trier par nom</option>
                 <option value="courses">Trier par cours</option>
               </select>
-              <button
+              {/* <button
                 className="bg-gray-600 text-white rounded p-1 hover:bg-gray-700"
                 onClick={() => exportData(filteredStudents, "apprenants.csv")}
               >
                 Exporter CSV
-              </button>
+              </button> */}
             </div>
           </div>
           <input

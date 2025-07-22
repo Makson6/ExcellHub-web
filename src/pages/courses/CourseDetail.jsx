@@ -4,6 +4,7 @@ import api from "../../api/Axios";
 import toast from "react-hot-toast";
 import { useAuthStore } from "../../store/useAuthStore";
 import { FaStar, FaHeart } from "react-icons/fa";
+import { Loader } from "lucide-react";
 
 const CourseDetail = () => {
   const [course, setCourse] = useState(null);
@@ -70,7 +71,9 @@ const CourseDetail = () => {
 
     if (!course) return;
 
-    if (!course.price || course.price === 0) {
+    if (!course?.price || course.price === 0) {
+      console.log("course, prise");
+
       navigate("/subscription", {
         state: { courseId: course.id, courseTitle: course.title },
       });
@@ -118,29 +121,36 @@ const CourseDetail = () => {
       setAverageRating(res.data.average);
       setRatingsCount(res.data.count);
     } catch (e) {
-      toast.error("Erreur lors de l'envoi de la note");
+      toast.error(
+        e.response?.data.message || "Erreur lors de l'envoi de la note"
+      );
     }
   };
 
   // ❤️ Gérer like
-  const toggleLike = async () => {
-    if (!user) return toast.error("Connectez-vous pour aimer ce cours !");
-    try {
-      if (!userLiked) {
-        await api.post(`/api/courses/${courseId}/likes`);
-        setLikesCount((prev) => prev + 1);
-        setUserLiked(true);
-      } else {
-        await api.delete(`/api/courses/${courseId}/likes`);
-        setLikesCount((prev) => prev - 1);
-        setUserLiked(false);
-      }
-    } catch (e) {
-      toast.error("Erreur lors du traitement du like");
-    }
-  };
+  // const toggleLike = async () => {
+  //   if (!user) return toast.error("Connectez-vous pour aimer ce cours !");
+  //   try {
+  //     if (!userLiked) {
+  //       await api.post(`/api/courses/${courseId}/likes`);
+  //       setLikesCount((prev) => prev + 1);
+  //       setUserLiked(true);
+  //     } else {
+  //       await api.delete(`/api/courses/${courseId}/likes`);
+  //       setLikesCount((prev) => prev - 1);
+  //       setUserLiked(false);
+  //     }
+  //   } catch (e) {
+  //     toast.error("Erreur lors du traitement du like");
+  //   }
+  // };
 
-  if (loading) return <div className="p-6 text-center">Chargement...</div>;
+  if (loading)
+    return (
+      <div className="flex h-screen justify-center items-center">
+        <Loader size={55} className="animate-spin mb-20 dark:text-light" />
+      </div>
+    );
   if (!course)
     return (
       <div className="p-6 text-center text-red-500">📛 Cours introuvable.</div>
@@ -172,7 +182,7 @@ const CourseDetail = () => {
           </div>
 
           {/* ❤️ Likes */}
-          <div className="mt-2 flex items-center gap-2">
+          {/* <div className="mt-2 flex items-center gap-2">
             <button onClick={toggleLike} className="flex items-center gap-1">
               <FaHeart
                 className={`transition ${
@@ -181,7 +191,7 @@ const CourseDetail = () => {
               />
               <span className="text-sm text-gray-600">{likesCount} j’aime</span>
             </button>
-          </div>
+          </div> */}
 
           <p className="text-gray-700 mt-3 font-medium">
             💰 Prix :{" "}
@@ -245,22 +255,26 @@ const CourseDetail = () => {
           </ul>
         </div>
 
-        {/* Bloc pour noter */}
-        <div className="mt-8">
-          <p className="mb-2 text-gray-700 font-medium">Notez ce cours :</p>
-          <div className="flex items-center gap-2">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <FaStar
-                key={n}
-                onClick={() => submitRating(n)}
-                className={`cursor-pointer transition ${
-                  userRating >= n ? "text-yellow-400" : "text-gray-300"
-                }`}
-                size={28}
-              />
-            ))}
+        {/* afficher ce Bloc pour noter seulement si user est deja inscrit */}
+        {isEnrolled ? (
+          <div className="mt-8">
+            <p className="mb-2 text-gray-700 font-medium">Notez ce cours :</p>
+            <div className="flex items-center gap-2">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <FaStar
+                  key={n}
+                  onClick={() => submitRating(n)}
+                  className={`cursor-pointer transition ${
+                    userRating >= n ? "text-yellow-400" : "text-gray-300"
+                  }`}
+                  size={28}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

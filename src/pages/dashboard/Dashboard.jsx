@@ -26,13 +26,13 @@ export default function Dashboard() {
       }, 10000);
     }
   }, [loading]);
-
   if (loading)
     return (
       <div className="flex h-screen justify-center items-center">
         <Loader size={55} className="animate-spin mb-20 dark:text-light" />
       </div>
     );
+
   if (!user) {
     navigate("/login", { state: dashboard });
   }

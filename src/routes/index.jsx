@@ -1,167 +1,263 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
+import { createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "../components/security/PrivateRoutes";
+// 📄 Pages générales
 import Home from "../pages/Home";
-import Courses from "../pages/courses/Courses";
-import CourseDetail from "../pages/courses/CourseDetail.jsx";
-import ChapterViewer from "../pages/courses/ChapterViewer";
+import About from "../pages/auth/About";
+import Contact from "../pages/Contacts";
 import NotFound from "../pages/NotFound";
-import CreateCourse from "../pages/courses/CreateCourse";
-import EditCourse from "../pages/courses/EditCourse";
+
+// 🔐 Auth
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import StudentDashboard from "../pages/dashboard/Student";
-import About from "../pages/auth/About.jsx";
-import Contact from "../pages/Contacts";
-import AdminNewsletterEditor from "../pages/courses/AdminNewsletter.jsx";
-import AdminActionsLogs from "../components/AdminActionsLogs.jsx";
-import TeacherDashboard from "../pages/dashboard/Teacher";
-import CreateQuiz from "../pages/courses/CreateQuiz";
-import PaymentSection from "../components/payments/PaymentSection.jsx";
-import VerifyOTPpass from "../components/security/VerifyOTPpass.jsx";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import ResetPassword from "../pages/auth/ResetPassword";
+import OtpVerification from "../pages/auth/OtpVerification";
+import VerifyOTPpass from "../components/security/VerifyOTPpass";
+import VerifyEmail from "../components/security/VerifyEmail";
+
+// 👤 Utilisateur
 import ProfilePage from "../pages/auth/ProfilePage";
+import PrivacyAndSecurity from "../pages/auth/PrivacyAndSecurity";
+import GeneralConditions from "../pages/auth/ConditionGenerale";
+import TermsOfService from "../pages/auth/Term";
+
+// 🎓 Cours
+import Courses from "../pages/courses/Courses";
+import CourseDetail from "../pages/courses/CourseDetail";
+import ChapterViewer from "../pages/courses/ChapterViewer";
+import CreateCourse from "../pages/courses/CreateCourse";
+import EditCourse from "../pages/courses/EditCourse";
+import TeacherCourseDetail from "../pages/courses/TeacherCourseDetail";
+import Subscribe from "../pages/courses/Subscription";
+
+// 🧪 Quiz
+import CreateQuiz from "../pages/courses/CreateQuiz";
+import LessonQuizPage from "../pages/Quizes/LessonQuizPage";
+
+// 💳 Paiement
+import PaymentSection from "../components/payments/PaymentSection";
+import PaymentSuccess from "../components/payments/PymentSuccess";
+import PaymentCancel from "../components/payments/PaymentCancel";
+
+// 📊 Dashboard
 import Dashboard from "../pages/dashboard/Dashboard";
-import PrivacyAndSecurity from "../pages/auth/PrivacyAndSecurity.jsx";
-import ForgotPassword from "../pages/auth/ForgotPassword.jsx";
-import Subscribe from "../pages/courses/Subscription.jsx";
-import LessonQuizPage from "../pages/Quizes/LessonQuizPage.jsx";
-import VerifyEmail from "../components/security/VerifyEmail.jsx";
-import ResetPassword from "../pages/auth/ResetPassword.jsx";
-import TeacherCourseDetail from "../pages/courses/TeacherCourseDetail.jsx";
-import OtpVerification from "../pages/auth/OtpVerification.jsx";
-import GeneralConditions from "../pages/auth/ConditionGenerale.jsx";
-import TermsOfService from "../pages/auth/Term.jsx";
-import AdminDashboard from "../pages/dashboard/Admin.jsx";
+import AdminDashboard from "../pages/dashboard/Admin";
+import TeacherDashboard from "../pages/dashboard/Teacher";
+import StudentDashboard from "../pages/dashboard/Student";
+
+// 🛠 Admin
+import AdminNewsletterEditor from "../pages/courses/AdminNewsletter";
+import AdminActionsLogs from "../components/AdminActionsLogs";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      // 🌐 Public
+      { path: "", element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "contact", element: <Contact /> },
+
+      // 🔐 Auth
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+      { path: "forgot-password", element: <ForgotPassword /> },
+      { path: "reset-password", element: <ResetPassword /> },
+      { path: "verify-otp-password", element: <OtpVerification /> },
+      { path: "verify-forgot-password", element: <VerifyOTPpass /> },
+      { path: "verify-user-email", element: <VerifyEmail /> },
+
+      // ✅ Routes protégées par ProtectedRoute
       {
-        path: "",
-        element: <Home />,
+        path: "/dashboard/profile",
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/register",
-        element: <Register />,
+        path: "privacy",
+        element: (
+          <ProtectedRoute>
+            <PrivacyAndSecurity />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "conditions",
+        element: (
+          <ProtectedRoute>
+            <GeneralConditions />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/courses",
-        element: <Courses />,
+        path: "terms",
+        element: (
+          <ProtectedRoute>
+            <TermsOfService />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/courses/:courseId/chapters",
-        element: <CourseDetail />,
+        path: "courses",
+        element: (
+          <ProtectedRoute>
+            <Courses />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/courses/:courseId/chapters/:chapterId",
-        element: <ChapterViewer />,
+        path: "courses/:courseId",
+        element: (
+          <ProtectedRoute>
+            <TeacherCourseDetail />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/subscription",
-        element: <Subscribe />,
+        path: "courses/:courseId/edit",
+        element: (
+          <ProtectedRoute>
+            <EditCourse />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/payment",
-        element: <PaymentSection />,
+        path: "courses/:courseId/chapters",
+        element: (
+          <ProtectedRoute>
+            <CourseDetail />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "courses/:courseId/chapters/:chapterId",
+        element: (
+          <ProtectedRoute>
+            <ChapterViewer />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "create-course",
+        element: (
+          <ProtectedRoute>
+            <CreateCourse />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "subscription",
+        element: (
+          <ProtectedRoute>
+            <Subscribe />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "create-quiz",
+        element: (
+          <ProtectedRoute>
+            <CreateQuiz />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "lesson/:lessonId/quiz",
+        element: (
+          <ProtectedRoute>
+            <LessonQuizPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <ProtectedRoute>
+            <PaymentSection />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment-success",
+        element: (
+          <ProtectedRoute>
+            <PaymentSuccess />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment-cancel",
+        element: (
+          <ProtectedRoute>
+            <PaymentCancel />
+          </ProtectedRoute>
+        ),
       },
 
       {
-        path: "/dashboard",
+        path: "dashboard",
         children: [
-          { path: "", element: <Dashboard /> },
-          { path: "/dashboard/admin", element: <AdminDashboard /> },
-          { path: "/dashboard/teacher", element: <TeacherDashboard /> },
-          { path: "/dashboard/student", element: <StudentDashboard /> },
           {
-            path: "/dashboard/profile",
-            element: <ProfilePage />,
+            path: "",
+            element: (
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "admin",
+            element: (
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "teacher",
+            element: (
+              <ProtectedRoute>
+                <TeacherDashboard />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "student",
+            element: (
+              <ProtectedRoute>
+                <StudentDashboard />
+              </ProtectedRoute>
+            ),
           },
         ],
       },
-
       {
-        path: "/lesson/:lessonId/quiz",
-        element: <LessonQuizPage />,
-      },
-      //Administration
-      {
-        path: "/admin/newsletter",
-        element: <AdminNewsletterEditor />,
+        path: "admin/newsletter",
+        element: (
+          <ProtectedRoute>
+            <AdminNewsletterEditor />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/admin/adminlogs",
-        element: <AdminActionsLogs />,
-      },
-      //teacher
-      {
-        path: "/create-quiz",
-        element: <CreateQuiz />,
-      },
-      {
-        path: "/courses/:courseId",
-        element: <TeacherCourseDetail />,
-      },
-      {
-        path: "/create-course",
-        element: <CreateCourse />,
-      },
-      {
-        path: "/courses/:courseId/edit",
-        element: <EditCourse />,
-      },
-      //OteherPages
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/privacy",
-        element: <PrivacyAndSecurity />,
-      },
-      {
-        path: "/conditions",
-        element: <GeneralConditions />,
-      },
-      {
-        path: "/terms",
-        element: <TermsOfService />,
-      },
-      {
-        path: "forgot-password",
-        element: <ForgotPassword />,
-      },
-      {
-        path: "/verify-otp-password",
-        element: <OtpVerification />,
-      },
-      {
-        path: "/verify-forgot-password",
-        element: <VerifyOTPpass />,
-      },
-      {
-        path: "/reset-password",
-        element: <ResetPassword />,
-      },
-      {
-        path: "/verify-user-email",
-        element: <VerifyEmail />,
+        path: "admin/logs",
+        element: (
+          <ProtectedRoute>
+            <AdminActionsLogs />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
+
+  // ❌ Page 404
+  { path: "*", element: <NotFound /> },
 ]);
 
 export default router;

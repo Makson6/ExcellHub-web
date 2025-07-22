@@ -96,6 +96,9 @@ const TeacherDashboard = () => {
     try {
       await api.delete(`/api/courses/${courseId}`);
       await fetchMyCourses();
+      //     set({ user: null, isAuthenticated: false });
+      //   }
+      // },
       alert("Cours supprimé avec succès");
     } catch (err) {
       setErrorDelete(
@@ -155,17 +158,17 @@ const TeacherDashboard = () => {
             <div>
               <h1 className="text-3xl font-bold text-center">
                 {" "}
-                {user.fullName}
+                {user?.fullName}
               </h1>
               <p className="text-gray-500 text-center">{user?.email}</p>
             </div>
           </div>
         </div>
         <div>
-          {user.role !== "STUDENT" && (
+          {user?.role !== "STUDENT" && (
             <div className="comptes grid grid-cols-2 mt-3 sm:flex flex-row gap-9 justify-center items-center">
               {[
-                ...(user.role === "TEACHER" || user.role === "ADMIN"
+                ...(user?.role === "TEACHER" || user?.role === "ADMIN"
                   ? [
                       {
                         to: "/dashboard/student",

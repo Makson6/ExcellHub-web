@@ -31,7 +31,9 @@ export function ProfileMenu({ onLogout }) {
         <p className="text-center text-sm italic">Chargement...</p>
       ) : (
         <>
-          <p className="text-center font-bold">{user?.name || "Utilisateur"}</p>
+          <p className="text-center font-bold">
+            {user?.fullName || "Utilisateur"}
+          </p>
           <p className="text-center text-sm">{user?.email}</p>
           <div className="flex justify-center">
             <p

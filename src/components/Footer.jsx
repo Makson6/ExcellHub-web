@@ -44,7 +44,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className=" flex flex-col gap-1 text-[var(--color-text-light)]">
-              <a href="" className="space-y-1 hover:text-[var(--color-accent)]">
+              <a
+                href="#"
+                className="space-y-1 hover:text-[var(--color-accent)]"
+              >
                 <li>Home</li>
               </a>{" "}
               <Link

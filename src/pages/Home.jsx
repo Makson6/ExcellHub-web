@@ -25,7 +25,7 @@ const Home = () => {
     const fetchCourses = async () => {
       try {
         const response = await ApiHistory.home();
-        setCourses(response.data || []);
+        setCourses(response || []);
       } catch (error) {
         console.error(error);
         toast.error(
@@ -56,16 +56,16 @@ const Home = () => {
             <div className="mt-6 flex justify-center gap-4 flex-wrap">
               <Link
                 to="/courses"
-                className="bg-[var(--color-primary)] text-white hover:bg-blue-700 rounded-lg px-6 py-3 font-semibold transition"
+                className="bg-primary dark:bg-secondary/70 text-white hover:bg-secondary/50 rounded-lg px-6 py-3 font-semibold transition"
               >
                 {t("discoverCourses")}
               </Link>
-              <Link
+              {/* <Link
                 to="/register"
                 className="bg-[var(--color-secondary)] text-white hover:bg-cyan-600 rounded-lg px-6 py-3 font-semibold transition"
               >
                 {t("createAccount")}
-              </Link>
+              </Link> */}
             </div>
           </section>
 

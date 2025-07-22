@@ -16,7 +16,6 @@ const StudentDashboard = () => {
       try {
         // 1. Récupère les IDs des leçons terminées
         const completedRes = await api.get("/api/lesson-progress/completed");
-        console.log(completedRes);
 
         const completedLessonIds = completedRes.data.lessonIds;
 
