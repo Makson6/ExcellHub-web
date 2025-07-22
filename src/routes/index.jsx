@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import About from "../pages/auth/About";
 import Contact from "../pages/Contacts";
 import NotFound from "../pages/NotFound";
+import Mentenance from "../pages/auth/Mentenance";
 
 // 🔐 Auth
 import Login from "../pages/Login";
@@ -180,6 +181,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PaymentSection />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "mentenace",
+        element: (
+          <ProtectedRoute>
+            <Mentenance />
           </ProtectedRoute>
         ),
       },
