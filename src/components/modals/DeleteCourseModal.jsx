@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { baseURL } from "../../config/config";
 
 const DeleteCourseModal = ({ courseId, onClose }) => {
   const [reason, setReason] = useState("");
@@ -16,7 +17,7 @@ const DeleteCourseModal = ({ courseId, onClose }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem("accessToken");
-      await axios.delete(`/api/courses/${courseId}`, {
+      await axios.delete(`${baseURL}/api/courses/${courseId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
