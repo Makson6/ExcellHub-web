@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+// import { baseURL } from "../../config/config.js";
 
 const DeleteCourseModal = ({ courseId, onClose }) => {
   const [reason, setReason] = useState("");
@@ -16,13 +17,16 @@ const DeleteCourseModal = ({ courseId, onClose }) => {
       setLoading(true);
 
       const token = localStorage.getItem("accessToken");
-      await axios.delete(`/api/courses/${courseId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        data: { reason },
-      });
+      await axios.delete(
+        `https://excellhub-api.onrender.com/api/courses/${courseId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          data: { reason },
+        }
+      );
       toast.success("Cours supprimé avec succès !");
       onClose();
     } catch (error) {
@@ -33,8 +37,8 @@ const DeleteCourseModal = ({ courseId, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-xl">
+    <div className="fixed bg-red-200/50 h-3/3 inset-0 flex  justify-center items-center  ">
+      <div className="absolute  bg-white dark:bg-midnight my-9 rounded-md p-6 space-y-4 w-full max-w-md">
         <h2 className="text-xl font-semibold mb-4">Supprimer ce cours</h2>
         <textarea
           value={reason}
@@ -43,14 +47,17 @@ const DeleteCourseModal = ({ courseId, onClose }) => {
           className="w-full h-28 border p-2 rounded resize-none"
         />
         <div className="flex justify-end gap-2 mt-4">
-          <button onClick={onClose} className="px-4 py-2 border rounded">
+          <button
+            onClick={onClose}
+            className="bg-gray-300 hover:bg-gray-400 dark:hover:bg-dark-bg dark:bg-dark-bg/60 cursor-pointer rounded p-2"
+          >
             Annuler
           </button>
 
           <button
             onClick={handleDelete}
             disabled={loading}
-            className="px-4 py-2 bg-red-600 text-white cursor-pointer rounded hover:bg-red-700 disabled:opacity-50"
+            className="bg-red-600 cursor-pointer hover:bg-red-700 text-white rounded p-2"
           >
             {loading ? "Suppression..." : "Confirmer"}
           </button>
