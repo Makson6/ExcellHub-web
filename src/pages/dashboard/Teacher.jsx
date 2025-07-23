@@ -28,10 +28,11 @@ const TeacherDashboard = () => {
     return course.category === filter;
   });
 
-  // Charger les cours
+  // Charger les cours apres avoir delete un
   const fetchMyCourses = async () => {
     try {
       const res = await api.get("/api/courses/my-courses");
+      console.log("responseApi", res);
 
       useTeacherStore.setState({ courses: res.data.courses });
     } catch (err) {
@@ -88,26 +89,6 @@ const TeacherDashboard = () => {
   // Affichage selon le rôle
   if (Role === undefined || Role === null) return <UserNotConnected />;
   if (Role === "STUDENT") return <UserNotTEACHER />;
-
-  const handleDeleteCourse = async (courseId) => {
-    setLoadingDelete(courseId);
-    setErrorDelete(null);
-
-    try {
-      await api.delete(`/api/courses/${courseId}`);
-      await fetchMyCourses();
-      //     set({ user: null, isAuthenticated: false });
-      //   }
-      // },
-      alert("Cours supprimé avec succès");
-    } catch (err) {
-      setErrorDelete(
-        err.response?.data?.error || "Erreur lors de la suppression du cours"
-      );
-    } finally {
-      setLoadingDelete(null);
-    }
-  };
 
   const categoryLabels = {
     NORMAL: "Tous",
@@ -253,6 +234,7 @@ const TeacherDashboard = () => {
         {/* Liste des cours */}
         <div>
           <h2 className="text-2xl font-semibold mb-4">📚 Vos cours</h2>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCourses.length > 0 ? (
               filteredCourses.map((course) => {
@@ -260,7 +242,9 @@ const TeacherDashboard = () => {
                 const pourcentage = Math.round(
                   (course.avgProgress / chaptersCount) * 100
                 );
-
+                {
+                  console.log(filteredCourses);
+                }
                 return (
                   <motion.div
                     key={course.id}
@@ -275,11 +259,13 @@ const TeacherDashboard = () => {
                       👥 {course.totalStudents} élèves inscrits
                     </p>
                     <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                      📈 Avancement moyen : {course.avgProgress} /{" "}
-                      {chaptersCount}
+                      📈 Avancement moyen : {course.avgProgress} %
+                      {/* 📈 Avancement moyen : {course.avgProgress} /{" "} */}
+                      {/* {chaptersCount} */}
                     </p>
                     <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                      🗒️ Quizes : {course.avgProgress} / {chaptersCount}
+                      🗒️ Quizes : {course.avgProgress}
+                      {/* 🗒️ Quizes : {course.avgProgress} / {chaptersCount} */}
                     </p>
                     <div className="flex w-full bg-gray-300 dark:bg-gray-700 h-2 rounded-full mt-3">
                       <div
@@ -302,24 +288,11 @@ const TeacherDashboard = () => {
                       </Link>
                       <button
                         onClick={() => setSelectedCourseToDelete(course.id)}
-                        className="text-red-600 hover:underline"
+                        className="text-red-600 cursor-pointer hover:underline"
                       >
                         Supprimer
                       </button>
-
-                      {/* <button
-                        disabled={loadingDelete === course.id}
-                        onClick={() => handleDeleteCourse(course.id)}
-                        className="text-red-600 hover:underline disabled:opacity-50"
-                      >
-                        {loadingDelete === course.id
-                          ? "Suppression..."
-                          : "Supprimer"}
-                      </button> */}
                     </div>
-                    {errorDelete && loadingDelete === course.id && (
-                      <p className="text-red-500 mt-2">{errorDelete}</p>
-                    )}
                   </motion.div>
                 );
               })

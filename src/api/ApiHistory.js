@@ -63,6 +63,10 @@ const ApiHistory = {
   logout: createEndpoint({ url: "/api/auth/logout", method: "post" }),
   home: createEndpoint({ url: "/api/courses/featcher", method: "get" }),
   adminDel: createEndpoint({ url: "/api/admin/user", method: "delete" }),
+  // courseDel: createEndpoint({
+  //   url: `/api/course/${courseId}`,
+  //   method: "delete",
+  // }),
 };
 
 export default ApiHistory;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { baseURL } from "../../config/config.js";
 
 const DeleteCourseModal = ({ courseId, onClose }) => {
   const [reason, setReason] = useState("");
@@ -13,28 +12,32 @@ const DeleteCourseModal = ({ courseId, onClose }) => {
       return;
     }
 
+    const toastId = toast.loading("suppression en cours...");
     try {
       setLoading(true);
-
       const token = localStorage.getItem("accessToken");
-      await axios.delete(`${baseURL}/api/courses/${courseId}`, {
+      await axios.delete(`/api/courses/${courseId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         data: { reason },
       });
-      toast.success("Cours supprimé avec succès !");
+      toast.success("Cours supprimé avec succès !", { id: toastId });
       onClose();
     } catch (error) {
-      toast.error("Erreur lors de la suppression.");
+      toast.error(
+        error.response.data.message || "Erreur lors de la suppression.",
+        { id: toastId }
+      );
     } finally {
       setLoading(false);
+      toast.remove("");
     }
   };
 
   return (
-    <div className="fixed bg-red-200/50 h-3/3 inset-0 flex  justify-center items-center  ">
+    <div className="fixed bg-sky-200/50 h-3/3 inset-0 flex  justify-center items-center  ">
       <div className="absolute  bg-white dark:bg-midnight my-9 rounded-md p-6 space-y-4 w-full max-w-md">
         <h2 className="text-xl font-semibold mb-4">Supprimer ce cours</h2>
         <textarea

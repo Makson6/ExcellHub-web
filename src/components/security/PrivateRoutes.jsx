@@ -10,7 +10,10 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated
     ? children
     : (toast.error("Please login first!"),
-      (<Navigate to="/login" replace state={{ from: location }} />));
+      (
+        // : (toast.error("Please login first!"),
+        <Navigate to="/login" replace state={{ from: location }} />
+      ));
 };
 
 export default ProtectedRoute;

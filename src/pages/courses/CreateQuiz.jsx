@@ -132,18 +132,18 @@ const CreateQuiz = () => {
   const watchQuestions = watch("questions");
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-8">
+    <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-white/90 m-2 rounded-sm space-y-8">
       <h1 className="text-3xl font-bold text-gray-800">Créer un Quiz</h1>
 
       {/* Sélecteurs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
         {/* Cours */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1  font-medium text-gray-700">
             Cours concerné *
           </label>
           <select
-            className="w-full border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full bg-gray-50 border-gray-300 cursor-pointer rounded px-3 py-2 dark:bg-white/70 focus:outline-none focus:ring-1 focus:ring-blue-400"
             value={selectedCourseId}
             onChange={(e) => {
               setSelectedCourseId(e.target.value);
@@ -162,10 +162,10 @@ const CreateQuiz = () => {
         {/* Leçon */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">
-            Leçon liée (facultatif)
+            Leçon liée *
           </label>
           <select
-            className="w-full border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full bg-gray-50 border-gray-300 cursor-pointer  rounded px-3 py-2 dark:bg-white/70 focus:outline-none focus:ring-1 focus:ring-blue-400"
             value={selectedLessonId}
             onChange={(e) => setSelectedLessonId(e.target.value)}
             disabled={!selectedCourseId || loadingLessons}
@@ -190,16 +190,18 @@ const CreateQuiz = () => {
         </div>
       </div>
       {/* Formulaire */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
         {/* Titre du quiz */}
-        <div className=" grid grid-cols-2">
+        <div className="flex   flex-wrap sm:gap-[24%]">
+          {/* <div className=" grid  grid-cols-2"> */}
           <div className="">
-            <label className="block mb-1 font-medium text-gray-700">
+            <label className="block  mb-1 font-medium text-gray-700">
               Titre du quiz *
             </label>
             <input
               {...register("title", { required: "Le titre est requis" })}
-              className="w-full border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full bg-gray-50 border-gray-300 cursor-text rounded px-3 py-2 dark:bg-white/70 focus:outline-none focus:ring-1 focus:ring-blue-400"
+              // className="w-full border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Ex : Quiz chapitre 1"
             />
             {errors.title && (
@@ -210,14 +212,15 @@ const CreateQuiz = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium text-gray-700">
+            <label className="block mb-1  font-medium text-gray-700">
               Duree du quiz (min) *
             </label>
             <input
               {...register("duration", {
                 required: "La duree du quiz est requise",
               })}
-              className="w-1/4 border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full bg-gray-50  border-gray-300 cursor-text rounded px-3 py-2 dark:bg-white/70 focus:outline-none focus:ring-1 focus:ring-blue-400"
+              // className="w-1/4 border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Ex : 15"
               type="number"
             />
@@ -233,14 +236,14 @@ const CreateQuiz = () => {
         {fields.map((q, qi) => (
           <div
             key={q.id}
-            className="border border-gray-200 p-4 rounded bg-gray-50 space-y-4"
+            className="border border-gray-200 p-4   rounded bg-gray-50 space-y-4"
           >
-            <div className="flex justify-between items-center">
+            <div className="flex  justify-between items-center">
               <h2 className="font-semibold text-gray-800">Question {qi + 1}</h2>
               <button
                 type="button"
                 onClick={() => remove(qi)}
-                className="text-red-500 hover:underline"
+                className="cursor-pointer text-red-500 hover:underline"
               >
                 Supprimer
               </button>
@@ -250,8 +253,8 @@ const CreateQuiz = () => {
               {...register(`questions.${qi}.text`, {
                 required: "Texte de la question requis",
               })}
-              className="w-full border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Texte de la question"
+              className="w-full hover:ring-1 ring-accent   border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Titre de la question"
             />
 
             {/* Options */}
@@ -265,7 +268,7 @@ const CreateQuiz = () => {
                       {...register(`questions.${qi}.options.${oi}.text`, {
                         required: "Option requise",
                       })}
-                      className="flex-grow border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="flex-grow hover:bg-white/90 border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                       placeholder={`Option ${oi + 1}`}
                     />
                     <label className="flex items-center gap-1 text-sm">
@@ -281,7 +284,7 @@ const CreateQuiz = () => {
 
             <input
               {...register(`questions.${qi}.explanation`)}
-              className="w-full border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full hover:ring-1 ring-accent  border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Explication (facultatif)"
             />
           </div>
@@ -301,7 +304,7 @@ const CreateQuiz = () => {
               explanation: "",
             })
           }
-          className="inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
+          className="inline-block cursor-pointer bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
         >
           ➕ Ajouter une question
         </button>
@@ -311,7 +314,7 @@ const CreateQuiz = () => {
           <button
             type="submit"
             disabled={!selectedCourseId}
-            className={`px-6 py-2 rounded text-white ${
+            className={`px-6 py-2 cursor-pointer rounded text-white ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
@@ -321,8 +324,13 @@ const CreateQuiz = () => {
           </button>
           <button
             type="button"
-            onClick={() => setShowPreview(!showPreview)}
-            className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700"
+            // disabled={!selectedCourseId}
+            onClick={() => {
+              selectedLessonId
+                ? setShowPreview(!showPreview)
+                : toast.error("selectionez un cours d'abord.");
+            }}
+            className="px-4 cursor-pointer py-2 rounded bg-green-600 text-white hover:bg-green-700"
           >
             {showPreview ? "Masquer" : "Prévisualiser"}
           </button>
@@ -330,6 +338,7 @@ const CreateQuiz = () => {
       </form>
 
       {/* Prévisualisation */}
+
       {showPreview && (
         <div className="mt-8 border-t pt-6 space-y-4">
           <h2 className="text-xl font-bold text-gray-800">Aperçu du Quiz</h2>

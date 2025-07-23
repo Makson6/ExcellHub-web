@@ -1,11 +1,13 @@
 import React from "react";
 import "react-phone-input-2/lib/style.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import MaintenancePage from "../../pages/auth/Mentenance";
+import toast from "react-hot-toast";
 // import { useAuthStore } from "../../store/useAuthStore.js";
 
 export default function PaymentSection() {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const courseTitle = location.state?.courseTitle;
   const courseId = location.state?.courseId;
   const price = location.state?.price;
@@ -54,7 +56,14 @@ export default function PaymentSection() {
   //     setStatus(null);
   //   }
   // };
-
+  const handleCancel = () => {
+    toast.success("Go to home page");
+    navigate("/");
+  };
+  const handleSbs = () => {
+    toast.error("Page en mainntenace");
+    navigate("/mentenance");
+  };
   return (
     <div className="mx-auto mt-[30%] sm:my-[12%]  lg:mt-40 dark:bg-gray-800 rounded-2xl p-6 max-w-lg shadow-lg">
       <div className="flex justify-center items-center my-3">
@@ -81,6 +90,7 @@ export default function PaymentSection() {
       <div className="flex  justify-around text-white ">
         <button
           type="button"
+          onClick={() => handleSbs()}
           className={`w-full cursor-pointer mt-6 rounded-lg py-3 font-bold text-white ${
             status === "processing"
               ? "bg-gray-400 cursor-not-allowed"
@@ -93,6 +103,7 @@ export default function PaymentSection() {
       <div className="flex justify-around text-white ">
         <button
           type="button"
+          onClick={() => handleCancel()}
           className={`w-full cursor-pointer mt-6 rounded-lg py-3 font-bold text-white ${
             status === "processing"
               ? "bg-gray-400 cursor-not-allowed"

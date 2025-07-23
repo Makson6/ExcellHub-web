@@ -5,6 +5,7 @@ import FaqSection from "../components/FaqQuestions";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import ApiHistory from "../api/ApiHistory";
+import handleApiError from "../utils/handleApiError";
 
 const Home = () => {
   const { t } = useTranslation("home");
@@ -28,6 +29,8 @@ const Home = () => {
         setCourses(response || []);
       } catch (error) {
         console.error(error);
+        console.log("Handler de Erreur:", handleApiError(error));
+
         toast.error(
           error?.response?.data?.message ||
             "Erreur lors du chargement des cours"

@@ -185,7 +185,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "mentenace",
+        path: "mentenance",
         element: (
           <ProtectedRoute>
             <Mentenance />

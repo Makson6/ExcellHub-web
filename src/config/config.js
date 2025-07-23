@@ -1,5 +1,5 @@
 export const baseURL =
-  import.meta.env.VITE_BACKEND_URL || "https://excellhub-api.onrender.com";
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 // configuration Firebase
 import { initializeApp } from "firebase/app";

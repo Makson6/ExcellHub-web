@@ -163,9 +163,8 @@ const AdminDashboard = ({ user }) => {
       toast.remove("");
     }
   };
-  //traquer les cours orphelins
   const takeID = async () => {
-    const toastId = toast.loading("loading...");
+    const toastId = toast.loading("recherche de cours orphelins eb cours...");
     try {
       const res = await api.put("/api/admin/takeID");
       toast.success(res.data?.message || "chek reusi", { id: toastId });
@@ -174,8 +173,11 @@ const AdminDashboard = ({ user }) => {
         error.data.message || "Erreur de recuperation cours sans teacher ID",
         { id: toastId }
       );
+    } finally {
+      toast.remove("");
     }
   };
+
   return (
     <div className="min-h-screen py-10 px-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="max-w-6xl mx-auto space-y-10">

@@ -33,6 +33,7 @@ const DeleteUserModal = ({ onClose }) => {
       );
     } finally {
       setLoading(false);
+      toast.remove("");
     }
   };
 

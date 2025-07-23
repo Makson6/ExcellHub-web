@@ -128,15 +128,22 @@ const LessonQuizPage = () => {
 
       const quizId = quiz.id;
 
-      await api.post("/api/quiz-results", {
+      await api.post("/api/quizzes/postResult", {
         quizId: quizId,
         score: calculatedScore,
       });
-      await api.post(`/lesson-progress/${lessonId}/complete`);
-      toast.success("lesson marque coumme termine", { id: toastId });
+      //marquer comme done une fois soummis
+      // await api.post(`/lesson-progress/${lessonId}/complete`);
+      toast.success("Quiz soumis avec succes!", { id: toastId });
     } catch (err) {
       console.error("Erreur de soumission du quiz :", err);
-      toast.error("Une erreur est survenue lors de la soumission.");
+      toast.error(
+        err.response?.data?.message ||
+          "Une erreur est survenue lors de la soumission.",
+        {
+          id: toastId,
+        }
+      );
     } finally {
       toast.remove("");
     }
@@ -239,7 +246,7 @@ const LessonQuizPage = () => {
             <button
               onClick={handleSubmit}
               // disabled={quiz.questions.some((q) => !answers[q.id])}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow disabled:opacity-50"
+              className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow disabled:opacity-50"
             >
               Soumettre mes réponses
             </button>

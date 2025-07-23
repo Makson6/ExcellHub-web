@@ -16,17 +16,21 @@ const StudentDashboard = () => {
       try {
         // 1. Récupère les IDs des leçons terminées
         const completedRes = await api.get("/api/lesson-progress/completed");
-
         const completedLessonIds = completedRes.data.lessonIds;
-
         // 2. Récupère tous les quizzes de l'utilisateur
         const res = await api.get("/api/quizzes/my-quizzes");
-        const allQuizzes = res.data.data;
+
+        const allQuizzes = res.data.uncompletedQuizzes;
 
         // 3. Filtrer les quizzes liés aux leçons terminées
         const filteredQuizzes = allQuizzes.filter((quiz) =>
           completedLessonIds.includes(quiz.lessonId)
         );
+
+        const popo = filteredQuizzes.map((p) => p.lesson);
+
+        const popo2 = popo.map((l) => l);
+        console.log(popo2);
 
         setQui(filteredQuizzes);
       } catch (error) {

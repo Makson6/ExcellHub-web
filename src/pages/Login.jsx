@@ -131,7 +131,6 @@ export default function Login() {
             </span>
           </button>
         </form>
-
         {/* Bouton GOOGLE */}
         {/* <div className="flex justify-center my-4">
           <GoogleLoginButton />

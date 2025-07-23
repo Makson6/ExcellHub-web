@@ -3,7 +3,7 @@ import { FaTools } from "react-icons/fa";
 
 export default function MaintenancePage() {
   return (
-    <div className="h-fit dark:bg-[var(--dark-background)] flex items-center justify-center p-6 text-center">
+    <div className="h-fit dark:bg-[var(--dark-background)] mt-[10%] flex items-center justify-center p-6 text-center">
       <div className="max-w-xl bg-[var(--light-zinc)] dark:bg-[var(--dark-primary)] rounded-lg shadow-lg p-10">
         <div className="text-5xl text-yellow-500 mb-4 flex justify-center">
           <FaTools />
