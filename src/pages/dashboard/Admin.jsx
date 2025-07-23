@@ -59,7 +59,7 @@ const AdminDashboard = ({ user }) => {
     setLoading(true);
     const fetchAll = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("accessToken");
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         const [

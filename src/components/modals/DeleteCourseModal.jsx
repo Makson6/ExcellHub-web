@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-// import { baseURL } from "../../config/config.js";
+import { baseURL } from "../../config/config.js";
 
 const DeleteCourseModal = ({ courseId, onClose }) => {
   const [reason, setReason] = useState("");
@@ -17,16 +17,13 @@ const DeleteCourseModal = ({ courseId, onClose }) => {
       setLoading(true);
 
       const token = localStorage.getItem("accessToken");
-      await axios.delete(
-        `https://excellhub-api.onrender.com/api/courses/${courseId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          data: { reason },
-        }
-      );
+      await axios.delete(`${baseURL}/api/courses/${courseId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: { reason },
+      });
       toast.success("Cours supprimé avec succès !");
       onClose();
     } catch (error) {
