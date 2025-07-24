@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="bg-zinc-50 text-lighttext dark:bg-gray-600 dark:text-darktext min-h-screen flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
-      {shouldHideNavbar && <Navbar />}
+      {!shouldHideNavbar && <Navbar />}
       <main className="flex-1">
         <Outlet />
       </main>
