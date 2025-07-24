@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import api from "../api/Axios";
 
-export const useAuthStore = create((set) => {
+export const useAuthStore = create((set, get) => {
   let storedUser = null;
   try {
     const storedUserRaw = localStorage.getItem("user");
@@ -12,14 +12,12 @@ export const useAuthStore = create((set) => {
     storedUser = null;
   }
 
-  const isAuthenticated = !!storedUser;
-
   return {
     user: storedUser,
-    isAuthenticated,
+    isAuthenticated: !!storedUser,
+    isFetchingUser: false, // ✅ Protection ajoutée
 
     setUser: (nextUser) => {
-      //  Si nextUser est une fonction (comme prev => ({ ...prev, avatar: ... }))
       if (typeof nextUser === "function") {
         set((state) => {
           const computedUser = nextUser(state.user);
@@ -36,20 +34,14 @@ export const useAuthStore = create((set) => {
           localStorage.setItem("user", JSON.stringify(computedUser));
           return { user: computedUser, isAuthenticated: true };
         });
-      }
-
-      //  Si nextUser est un objet
-      else if (
+      } else if (
         typeof nextUser === "object" &&
         !Array.isArray(nextUser) &&
         nextUser !== null
       ) {
         localStorage.setItem("user", JSON.stringify(nextUser));
         set({ user: nextUser, isAuthenticated: true });
-      }
-
-      // ❌ Sinon : invalide
-      else {
+      } else {
         console.warn("setUser: valeur invalide", nextUser);
         localStorage.removeItem("user");
         set({ user: null, isAuthenticated: false });
@@ -66,10 +58,14 @@ export const useAuthStore = create((set) => {
     },
 
     vraiUser: async () => {
+      const { isFetchingUser } = get();
+      if (isFetchingUser) return; // ✅ Ne pas rappeler si déjà en cours
+
+      set({ isFetchingUser: true });
       try {
         const { data } = await api.get("/api/auth/me");
         localStorage.setItem("user", JSON.stringify(data));
-        set({ user: data, isAuthenticated: true });
+        set({ user: data, isAuthenticated: true, isFetchingUser: false });
         return data;
       } catch (error) {
         console.error(
@@ -77,7 +73,7 @@ export const useAuthStore = create((set) => {
           error
         );
         localStorage.removeItem("user");
-        set({ user: null, isAuthenticated: false });
+        set({ user: null, isAuthenticated: false, isFetchingUser: false });
         return null;
       }
     },

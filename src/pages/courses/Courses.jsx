@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CourseCard from "../../components/CourseCard";
 import api from "../../api/Axios";
+import { Loader } from "lucide-react";
 
 const Courses = () => {
   const [search, setSearch] = useState("");
@@ -8,10 +9,12 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false); // ajout loading
   const limit = 6;
 
   useEffect(() => {
     const fetchCourses = async () => {
+      setLoading(true);
       try {
         const response = await api.get("/api/courses/paginated", {
           params: {
@@ -26,6 +29,8 @@ const Courses = () => {
         setTotalPages(response.data.totalPages);
       } catch (error) {
         console.error("Erreur de chargement des cours :", error);
+      } finally {
+        setLoading(false); // fin chargement
       }
     };
 
@@ -69,7 +74,11 @@ const Courses = () => {
         </div>
 
         {/* Liste des cours */}
-        {courses.length === 0 ? (
+        {loading ? (
+          <p className="text-center text-xl text-gray-600">
+            <Loader />
+          </p>
+        ) : courses.length === 0 ? (
           <p className="text-gray-500">Aucun cours trouvé.</p>
         ) : (
           <>

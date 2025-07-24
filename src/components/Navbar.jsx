@@ -8,6 +8,15 @@ import { useAuthStore } from "../store/useAuthStore.js";
 import api from "../api/Axios.js";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-hot-toast";
+import { Home, HomeIcon } from "lucide-react";
+import { FaHome } from "react-icons/fa";
+import {
+  MdAddHome,
+  MdAddHomeWork,
+  MdHome,
+  MdHomeFilled,
+  MdHomeMax,
+} from "react-icons/md";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,10 +71,16 @@ const Navbar = () => {
           {/* Desktop Links */}
           {[
             { to: "/courses", label: t("allCourses") },
+            {
+              to: "/" && "login",
+              label: (
+                <div className="flex items-center justify-center ">Home</div>
+              ),
+            },
             { to: "/dashboard", label: t("dashboard") },
-            { to: "/dashboard/student", label: t("student") },
-            { to: "/dashboard/teacher", label: t("teacher") },
-            { to: "/dashboard/admin", label: t("admin") },
+            // { to: "/dashboard/student", label: t("student") },
+            // { to: "/dashboard/teacher", label: t("teacher") },
+            // { to: "/dashboard/admin", label: t("admin") },
           ].map((link) => (
             <NavLink
               key={link.to}

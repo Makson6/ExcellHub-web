@@ -10,32 +10,34 @@ export default function Dashboard() {
   const { user, vraiUser } = useAuthStore();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  useEffect(() => {
-    async function fetchUser() {
-      await vraiUser();
-      setLoading(false);
-    }
+  const dashboardPath = useLocation().pathname;
 
-    fetchUser();
-  }, [vraiUser]);
-  const dashboard = useLocation().pathname;
   useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 10000);
+    const checkUser = async () => {
+      if (!user) {
+        await vraiUser();
+      }
+      setLoading(false);
+    };
+
+    checkUser();
+  }, []);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate("/login", { state: dashboardPath });
     }
-  }, [loading]);
-  if (loading)
+  }, [loading, user, navigate, dashboardPath]);
+
+  if (loading) {
     return (
       <div className="flex h-screen justify-center items-center">
         <Loader size={55} className="animate-spin mb-20 dark:text-light" />
       </div>
     );
-
-  if (!user) {
-    navigate("/login", { state: dashboard });
   }
+
+  if (!user) return null; // Pour éviter un rendu inutile pendant redirection
 
   switch (user.role) {
     case "ADMIN":

@@ -32,8 +32,6 @@ const TeacherDashboard = () => {
   const fetchMyCourses = async () => {
     try {
       const res = await api.get("/api/courses/my-courses");
-      console.log("responseApi", res);
-
       useTeacherStore.setState({ courses: res.data.courses });
     } catch (err) {
       console.error("Erreur de chargement des cours :", err.status);
@@ -242,9 +240,7 @@ const TeacherDashboard = () => {
                 const pourcentage = Math.round(
                   (course.avgProgress / chaptersCount) * 100
                 );
-                {
-                  console.log(filteredCourses);
-                }
+
                 return (
                   <motion.div
                     key={course.id}

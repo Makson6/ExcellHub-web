@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/Axios";
 
 export default function AdminLogs() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/admin/logs")
-      .then((res) => setLogs(res.data))
-      .catch((err) => console.error(err));
+    const fetchLogs = async () => {
+      try {
+        const res = await api.get("api/admin/logs");
+        setLogs(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchLogs();
   }, []);
+
   console.log(logs);
 
   return (
@@ -22,27 +30,23 @@ export default function AdminLogs() {
               <th className="p-2">Date</th>
               <th className="p-2">Admin</th>
               <th className="p-2">Action</th>
-              <th className="p-2">Cible</th>
+              <th className="p-2">ID Cible</th>
               <th className="p-2">Description</th>
             </tr>
           </thead>
           <tbody>
-            {/* {Array.isArray(logs) &&
-              logs.map((log) => (
+            {Array.isArray(logs) &&
+              logs?.map((log) => (
                 <tr key={log.id} className="border-t">
                   <td className="p-2">
-                    {new Date(log.timestamp).toLocaleString()}
+                    {new Date(log.createdAt).toLocaleString()}
                   </td>
-                  <td className="p-2">
-                    {log.admin?.name} {log.admin?.lastName}
-                  </td>
+                  <td className="p-2">{log.admin?.fullName}</td>
                   <td className="p-2">{log.action}</td>
-                  <td className="p-2">
-                    {log.targetType} - {log.targetId}
-                  </td>
-                  <td className="p-2">{log.description}</td>
+                  <td className="p-2">{log.targetId}</td>
+                  <td className="p-2">{log.reason}</td>
                 </tr>
-              ))} */}
+              ))}
           </tbody>
         </table>
       </div>

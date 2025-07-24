@@ -17,7 +17,6 @@ import UserNotADMIN from "../../components/security/UserNotADMIN";
 import api from "../../api/Axios";
 import CreateTeacherModal from "../../components/modals/createTeacherModal";
 import CreateAdminModal from "../../components/modals/CreateAdminModal";
-import SuspendUserModal from "../../components/modals/SuspendUserModal";
 import AddCourseModal from "../../components/modals/AddCourseModal";
 import toast from "react-hot-toast";
 import UserNotConnected from "../../components/security/UserNotConnected";
@@ -48,16 +47,18 @@ const AdminDashboard = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const [showCreateTeacherModal, setShowCreateTeacherModal] = useState(false);
   const [showCreateAdminModal, setShowCreateAdminModal] = useState(false);
-  const [showSuspendModal, setShowSuspendModal] = useState(false);
-  const [userToSuspend, setUserToSuspend] = useState(null);
   const [showAddCourseModal, setShowAddCourseModal] = useState(false);
   const [showDellUserModal, setShowDellUserModal] = useState(false);
 
   const pageSize = 3;
 
   useEffect(() => {
-    setLoading(true);
+    let isCalled = false;
+
     const fetchAll = async () => {
+      if (isCalled || theUser) return; // évite les appels multiples
+      isCalled = true;
+      setLoading(true);
       try {
         const token = localStorage.getItem("accessToken");
         const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -90,8 +91,9 @@ const AdminDashboard = ({ user }) => {
         setLoading(false);
       }
     };
+
     fetchAll();
-  }, []);
+  }, [theUser]);
 
   if (loading)
     return (
@@ -101,7 +103,7 @@ const AdminDashboard = ({ user }) => {
     );
 
   if (!theUser) return <UserNotADMIN />;
-  const Role = theUser?.role;
+  const Role = theUser.role;
   if (Role === undefined) return <UserNotConnected />;
 
   const filteredTeachers = teachersData.filter((t) =>
@@ -130,15 +132,16 @@ const AdminDashboard = ({ user }) => {
     (pageStudent - 1) * pageSize,
     pageStudent * pageSize
   );
+  // Exporter le fichier liste en blob ou csv
+  // const exportData = (data, filename) => {
+  //   const csv = Papa.unparse(data);
+  //   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = filename;
+  //   link.click();
+  // };
 
-  const exportData = (data, filename) => {
-    const csv = Papa.unparse(data);
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-  };
   const publishedCourses = (coursesData || []).filter(
     (c) => c.status === "PUBLISHED"
   );
@@ -174,7 +177,7 @@ const AdminDashboard = ({ user }) => {
         { id: toastId }
       );
     } finally {
-      toast.remove("");
+      toast.dismiss("");
     }
   };
 
@@ -268,7 +271,6 @@ const AdminDashboard = ({ user }) => {
             ➕ Ajouter un cours
           </button> */}
         </div>
-
         <div className=" flex items-center justify-center">
           <span
             onClick={verifyMe}
@@ -294,7 +296,6 @@ const AdminDashboard = ({ user }) => {
             </motion.div>
           ))}
         </motion.section>
-
         <section>
           <h2 onClick={() => takeID()} className="text-2xl font-semibold">
             📈 Inscriptions
@@ -316,7 +317,6 @@ const AdminDashboard = ({ user }) => {
             </ResponsiveContainer>
           </div>
         </section>
-
         {/* Formateurs */}
         <section>
           <div className="flex justify-between items-center">
@@ -455,18 +455,10 @@ const AdminDashboard = ({ user }) => {
             </div>
           </div>
         </section>
-
         {/* Cours */}
-
         <PublishedCourses courses={publishedCourses} />
-        <ContentPending courses={pendingCourses} />
 
-        {/* <PublishedCourses
-          courses={coursesData.filter((c) => c.status === "PUBLISHED")}
-        />
-        <ContentPending
-          courses={coursesData.filter((c) => c.status === "IN_CHECKING")}
-        /> */}
+        <ContentPending courses={pendingCourses} />
       </div>
 
       {/* Modales */}
@@ -480,7 +472,7 @@ const AdminDashboard = ({ user }) => {
         <DeleteUserModal onClose={() => setShowDellUserModal(false)} />
       )}
 
-      {showSuspendModal && userToSuspend && (
+      {/* {showSuspendModal && userToSuspend && (
         <SuspendUserModal
           user={userToSuspend}
           onClose={() => {
@@ -488,7 +480,7 @@ const AdminDashboard = ({ user }) => {
             setShowSuspendModal(false);
           }}
         />
-      )}
+      )} */}
 
       {showAddCourseModal && (
         <AddCourseModal onClose={() => setShowAddCourseModal(false)} />

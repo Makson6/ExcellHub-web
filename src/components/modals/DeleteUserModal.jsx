@@ -15,8 +15,6 @@ const DeleteUserModal = ({ onClose }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     const { mail } = data;
     try {
       setLoading(true);

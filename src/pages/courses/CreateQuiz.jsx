@@ -313,18 +313,17 @@ const CreateQuiz = () => {
         <div className="flex flex-wrap gap-4 mt-4">
           <button
             type="submit"
-            disabled={!selectedCourseId}
-            className={`px-6 py-2 cursor-pointer rounded text-white ${
+            disabled={!selectedCourseId || loading}
+            className={`px-6 py-2 flex items-center gap-2 rounded text-white transition ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
             }`}
           >
-            Enregistrer le quiz
+            {loading ? "Enregistrement..." : "Enregistrer le quiz"}
           </button>
           <button
             type="button"
-            // disabled={!selectedCourseId}
             onClick={() => {
               selectedLessonId
                 ? setShowPreview(!showPreview)

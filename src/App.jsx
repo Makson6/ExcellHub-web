@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { Toaster } from "react-hot-toast";
@@ -16,9 +16,11 @@ function App() {
     location.pathname.toLowerCase().includes(path)
   );
 
-  // ✅ Rafraîchir l'utilisateur s’il y a un token mais pas encore d'utilisateur
+  const hasFetchedUser = useRef(false); // ✅ pour éviter appels multiples
+
   useEffect(() => {
-    if (!user && accessToken) {
+    if (!user && accessToken && !hasFetchedUser.current) {
+      hasFetchedUser.current = true;
       vraiUser();
     }
   }, [user, accessToken, vraiUser]);
@@ -26,14 +28,13 @@ function App() {
   return (
     <div className="bg-zinc-50 text-lighttext dark:bg-gray-600 dark:text-darktext min-h-screen flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
-      {!shouldHideNavbar && <Navbar />}
+      {shouldHideNavbar && <Navbar />}
       <main className="flex-1">
         <Outlet />
       </main>
-      {shouldHideNavbar && <FaqSection />}
+      {/* {shouldHideNavbar && <FaqSection />} */}
       {shouldHideNavbar && <Footer />}
     </div>
   );
 }
-
 export default App;
